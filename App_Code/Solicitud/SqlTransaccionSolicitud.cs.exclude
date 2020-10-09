@@ -1,0 +1,1548 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Data.SqlClient;
+
+/// <summary>
+/// Descripción breve de SqlTransaccionSolicitud
+/// </summary>
+namespace Qanalytics.Data.Access.SqlClient
+{
+    public sealed class SqlTransaccionSolicitud
+    {
+        readonly public static String STRING_CONEXION = "CsString";
+        readonly SqlAccesoDatos accesoDatos = new SqlAccesoDatos(STRING_CONEXION);
+
+        #region Logistica
+
+        internal DataTable TrailerLogi_ObtenerXParametro(string placa, string numero, bool externo, int tipo_id, int tran_id = 0, int site_id = 0)
+        {
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[CARGA_TRAILERS_LOGISTICA_X_CRITERIO_V2]");
+            if (tipo_id != 0)
+            {
+                accesoDatos.AgregarSqlParametro("@ID_TIPO", tipo_id);
+            }
+            if (tran_id != 0)
+            {
+                accesoDatos.AgregarSqlParametro("@ID_TRAN", tran_id);
+            }
+            if (!String.IsNullOrEmpty(numero))
+            {
+                accesoDatos.AgregarSqlParametro("@NRO_FLOTA", numero);
+            }
+            if (!String.IsNullOrEmpty(placa))
+            {
+                accesoDatos.AgregarSqlParametro("@PLACA", placa);
+            }
+            if (externo)
+            {
+                accesoDatos.AgregarSqlParametro("@EXTERNO", externo);
+            }
+            if (site_id != 0)
+            {
+                accesoDatos.AgregarSqlParametro("@SITE_ID", site_id);
+            }
+            try
+            {
+                return accesoDatos.EjecutarSqlquery2();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        #endregion
+
+        #region Pallets
+
+        internal bool Pallets_Crear(SolicitudBC s, int luga_id_des, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_PALLET]");
+                accesoDatos.AgregarSqlParametro("@SITE_ID", s.ID_SITE);
+                accesoDatos.AgregarSqlParametro("@USUA_ID", s.ID_USUARIO);
+                accesoDatos.AgregarSqlParametro("@DOCUMENTO", s.DOCUMENTO);
+                accesoDatos.AgregarSqlParametro("@OBSERVACION", s.OBSERVACION);
+                accesoDatos.AgregarSqlParametro("@TRAI_ID", s.ID_TRAILER);
+                accesoDatos.AgregarSqlParametro("@ID_DESTINO", luga_id_des);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool Pallets_TrasladoEst(int id, int luga_id, int luga_id_dest, int soan_orden, int usua_id, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_PALLET_CARGA_COMPLETA_TRASLADO_ESTACIONAMIENTO]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID_DES", luga_id_dest);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool Pallets_Reiniciar(int id, int luga_id, int luga_id_dest, int usua_id, int soan_orden, int soan_orden_des, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[SOLICITUD_LOGISTICA_PALLET_ANDEN_DESCARGA]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID_DES", luga_id_dest);
+                if (soan_orden > 0)
+                    accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                else
+                    accesoDatos.AgregarSqlParametro("@soan_orden", DBNull.Value);
+                
+                accesoDatos.AgregarSqlParametro("@soan_orden_des", soan_orden_des );
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool pallets_Completar(int soli_id, int luga_id, int soan_orden, int usua_id, out string error)
+        {
+
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_PALLET_DESCARGA_COMPLETA]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+                if (soan_orden > 0)
+                    accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                else
+                    accesoDatos.AgregarSqlParametro("@soan_orden", DBNull.Value);
+                
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        #endregion
+
+        #region Desechos
+
+        internal bool Desechos_Crear(SolicitudBC s, int luga_id_des, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_DESECHOS]");
+                accesoDatos.AgregarSqlParametro("@SITE_ID", s.ID_SITE);
+                accesoDatos.AgregarSqlParametro("@USUA_ID", s.ID_USUARIO);
+                accesoDatos.AgregarSqlParametro("@DOCUMENTO", s.DOCUMENTO);
+                accesoDatos.AgregarSqlParametro("@OBSERVACION", s.OBSERVACION);
+                accesoDatos.AgregarSqlParametro("@TRAI_ID", s.ID_TRAILER);
+                accesoDatos.AgregarSqlParametro("@ID_DESTINO", luga_id_des);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool Desechos_TrasladoEst(int id, int luga_id, int luga_id_dest, int soan_orden, int usua_id, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_DESECHOS_CARGA_COMPLETA_TRASLADO_ESTACIONAMIENTO]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID_DES", luga_id_dest);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool Desechos_Reiniciar(int id, int luga_id, int luga_id_dest, int usua_id, int soan_orden, int soan_orden_des, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[SOLICITUD_LOGISTICA_DESECHOS_ANDEN_DESCARGA]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID_DES", luga_id_dest);
+                if (soan_orden>0)
+                accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                else
+                   accesoDatos.AgregarSqlParametro("@soan_orden", DBNull.Value);
+                
+                accesoDatos.AgregarSqlParametro("@soan_orden_des", soan_orden_des);
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool Desechos_Completar(int soli_id, int luga_id, int soan_orden, int usua_id, out string error)
+        {
+
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_DESECHOS_DESCARGA_COMPLETA]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+                accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        #endregion
+
+        # region descargaLI
+
+        internal bool DescargaLI_Crear(SolicitudBC s, int luga_id_des, out string error)
+        {
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_DESCARGA_LI]");
+                accesoDatos.AgregarSqlParametro("@SITE_ID", s.ID_SITE);
+                accesoDatos.AgregarSqlParametro("@ID_USUARIO", s.ID_USUARIO);
+                accesoDatos.AgregarSqlParametro("@DOCUMENTO", s.DOCUMENTO);
+                accesoDatos.AgregarSqlParametro("@OBSERVACION", s.OBSERVACION);
+                accesoDatos.AgregarSqlParametro("@ID_TRAILER", s.ID_TRAILER);
+                accesoDatos.AgregarSqlParametro("@ID_DESTINO", luga_id_des);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+
+        internal bool DescargaLI_Completar(int soli_id, int luga_id, int soan_orden, int usua_id, out string error)
+        {
+
+            bool exito = true;
+            error = "";
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_DESC_LI_DESCARGADO]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+          //      accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+          //      accesoDatos.AgregarSqlParametro("@soan_orden", soan_orden);
+                accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+                accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+                SqlParameter paramerror = accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", error);
+                accesoDatos.EjecutarSqlEscritura();
+                error = paramerror.Value.ToString();
+                if (string.IsNullOrEmpty(error))
+                    exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return exito;
+        }
+    
+        #endregion
+
+        #region LugarColorSolicitud
+
+        internal DataTable LugarColorSolicitud_ObtenerTodo()
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_LUGAR_COLOR_X_SOLICITUD]").Tables[0];
+        }
+
+        internal DataTable LugarColorSolicitud_ObtenerTodo(int soes_id)
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_LUGAR_COLOR_X_SOLICITUD] @SOES_ID = " + soes_id).Tables[0];
+        }
+
+        internal DataTable LugarColorSolicitud_ObtenerXSite(int site_id, int soes_id = 0, int soti_id = 0)
+        {
+            string query = "[dbo].[CARGA_TODO_LUGAR_COLOR_X_SOLICITUD]";
+            query += " @SITE_ID = " + site_id;
+            if (soes_id != null && soes_id != 0)
+                query += " @SOES_ID = " + soes_id;
+            if (soti_id != null && soti_id != 0)
+                query += " @SOTI_ID = " + soti_id;
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_LUGAR_COLOR_X_SOLICITUD] @SITE_ID = " + site_id).Tables[0];
+        }
+
+        internal bool LugarColorSolicitud_Agregar(DataTable dt, int soes_id)
+        {
+            bool exito = false;
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_LUGAR_COLOR_X_SOLICITUD]");
+            foreach (DataRow dr in dt.Rows)
+            {
+                accesoDatos.LimpiarSqlParametros();
+                accesoDatos.AgregarSqlParametro("@SOES_ID", soes_id);
+                accesoDatos.AgregarSqlParametro("@SITE_ID", dr["SITE_ID"].ToString());
+                accesoDatos.AgregarSqlParametro("@COLOR", dr["COLOR"].ToString());
+                try
+                {
+                    accesoDatos.EjecutarSqlEscritura();
+                    exito = true;
+                }
+                catch (Exception)
+                {
+                    exito = false;
+                    break;
+                }
+            }
+            return exito;
+        }
+
+        #endregion
+
+        #region SolicitudAnden
+
+        internal DataTable SolicitudAnden_SolicitudesCarga()
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_SOLICITUDES_ANDENES]").Tables[0];
+        }
+
+        internal DataTable SolicitudAnden_SolicitudesCarga(int site_id)
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_SOLICITUDES_ANDENES] @SITE_ID=" + site_id).Tables[0];
+        }
+
+        internal DataTable SolicitudAnden_SolicitudesCarga(int site_id, int playa_id, int anden_id, string id_soli, string estado_soli, string transportista)
+        {
+            accesoDatos.CargarSqlComando("[dbo].[CARGA_TODO_SOLICITUD_CARGA]");
+            DataTable dt = new DataTable();
+            try
+            {
+                if (site_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_SITE", site_id);
+                if (playa_id != 0)
+                    accesoDatos.AgregarSqlParametro("@PLAYA_ID", playa_id);
+                if (anden_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ANDEN_ID", anden_id);
+                if (!String.IsNullOrEmpty(id_soli))
+                    accesoDatos.AgregarSqlParametro("@SOLI_ID", Convert.ToInt32(id_soli));
+                if (!String.IsNullOrEmpty(estado_soli))
+                    accesoDatos.AgregarSqlParametro("@SOLI_estado", Convert.ToInt32(estado_soli));
+                if (!String.IsNullOrEmpty(transportista))
+                    accesoDatos.AgregarSqlParametro("@transportista", transportista);
+                dt = accesoDatos.EjecutarSqlquery2();
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                accesoDatos.LimpiarSqlParametros();
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return dt;
+        }
+
+        internal DataTable SolicitudAnden_ObtenerXSolicitudId(int id)
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_ANDENES_X_SOLICITUD_ID] " + id).Tables[0];
+        }
+
+        internal SolicitudAndenesBC SolicitudAnden_ObtenerXId(int id)
+        {
+            SolicitudAndenesBC sa = new SolicitudAndenesBC();
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[CARGA_SOLICITUD_ANDENES_X_ID]");
+                accesoDatos.AgregarSqlParametro("@ID", id);
+                accesoDatos.EjecutarSqlLector();
+                while (accesoDatos.SqlLectorDatos.Read())
+                {
+                    sa = cargarDatosSolicitudAnden(accesoDatos.SqlLectorDatos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return sa;
+        }
+
+        internal bool SolicitudAnden_InterrumpirCarga(SolicitudAndenesBC anden, int id_usuario, out  string resultado)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLI_ANDEN_ESTADO_CARGA_PARCIAL]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", anden.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", anden.ID_LUGAR);
+            accesoDatos.AgregarSqlParametro("@cant_pallet", anden.PALLETS_CARGADOS);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", anden.SOAN_ORDEN);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", id_usuario);
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_ReanudarCarga(int soli_id, int id_usuario, out  string resultado) //int nuevo_lugar,int id_usuario)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_REINICIAR_CARGA]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", id_usuario);
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+
+            //accesoDatos.AgregarSqlParametro("@ID_LUGAR", anden.ID_LUGAR);
+            //if (nuevo_lugar != 0)
+            //    accesoDatos.AgregarSqlParametro("@ID_NUEVOLUGAR", nuevo_lugar);
+            //accesoDatos.AgregarSqlParametro("@ORDEN_ANDEN", anden.ORDEN);
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_colocar_sello(int id_solicitud, int id_usuario, out  string resultado) //int nuevo_lugar,int id_usuario)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_ESTADO_SELLO_VALIDAR]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", id_solicitud);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", id_usuario);
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+
+            //accesoDatos.AgregarSqlParametro("@ID_LUGAR", anden.ID_LUGAR);
+            //if (nuevo_lugar != 0)
+            //    accesoDatos.AgregarSqlParametro("@ID_NUEVOLUGAR", nuevo_lugar);
+            //accesoDatos.AgregarSqlParametro("@ORDEN_ANDEN", anden.ORDEN);
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_validado_sello(int id_solicitud, int id_usuario, out  string resultado) //int nuevo_lugar,int id_usuario)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_ESTADO_SELLO_VALIDAdo]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", id_solicitud);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", id_usuario);
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+
+            //accesoDatos.AgregarSqlParametro("@ID_LUGAR", anden.ID_LUGAR);
+            //if (nuevo_lugar != 0)
+            //    accesoDatos.AgregarSqlParametro("@ID_NUEVOLUGAR", nuevo_lugar);
+            //accesoDatos.AgregarSqlParametro("@ORDEN_ANDEN", anden.ORDEN);
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_Eliminar(string andenes)
+        {
+            bool exito = false;
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[ELIMINA_SOLICITUD_ANDENES]");
+            accesoDatos.AgregarSqlParametro("@ANDENES", andenes);
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_Agregar(SolicitudAndenesBC solAnden)
+        {
+            bool exito = false;
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_ANDENES_V2]");
+            accesoDatos.AgregarSqlParametro("@ID_SOLICITUD", solAnden.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@ID_LUGAR", solAnden.ID_LUGAR);
+            accesoDatos.AgregarSqlParametro("@MIN_CARGA_EST", solAnden.MINS_CARGA_EST);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", solAnden.SOAN_ORDEN);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_Agregar(SolicitudAndenesBC solAnden, out int soan_orden)
+        {
+            bool exito = false;
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_ANDENES]");
+            accesoDatos.AgregarSqlParametro("@ID_SOLICITUD", solAnden.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@ID_LUGAR", solAnden.ID_LUGAR);
+            accesoDatos.AgregarSqlParametro("@MIN_CARGA_EST", solAnden.MINS_CARGA_EST);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", SqlDbType.Int);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            soan_orden = (int)accesoDatos.obtenerValorParametro("@SOAN_ORDEN");
+            return exito;
+        }
+
+        internal int SolicitudAnden_ObtenerPlayaId(int soli_id)
+        {
+            int play_id = 0;
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[CARGA_PLAYA_SOLICITUD]");
+                accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+                accesoDatos.EjecutarSqlLector();
+                while (accesoDatos.SqlLectorDatos.Read())
+                {
+                    play_id = int.Parse(accesoDatos.SqlLectorDatos["PLAY_ID"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return play_id;
+        }
+
+        internal bool SolicitudAnden_CompletarCarga(SolicitudAndenesBC anden, int usua_id, out  string resultado)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLI_ANDEN_ESTADO_CARGA_COMPLETA]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", anden.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", anden.ID_LUGAR);
+            //     accesoDatos.AgregarSqlParametro("@HORA_FIN_CARGA", anden.FECHA_CARGA_FIN);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", anden.SOAN_ORDEN);
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal DataTable SolicitudAnden_ObtenerBloqueados(int soli_id)
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[prcSOLICITUD_DESCARGA_ANDENES_BLOQUEADOS_LISTAR] " + soli_id).Tables[0];
+        }
+
+        internal bool SolicitudAnden_Bloquear(SolicitudAndenesBC s, int usua_id, out string resultado)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[BLOQUEAR_anden_Solicitud_descarga]");
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", s.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", s.ID_LUGAR);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+            accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+            accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", resultado);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+                resultado = "Todo OK";
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                resultado = ex.Message;
+            }
+            return exito;
+        }
+
+        internal bool SolicitudAnden_Liberar(int soli_id, int luga_id, int usua_id, out string resultado)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = true;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[Liberar_anden_Solicitud_descarga]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", usua_id);
+            accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+            accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", resultado);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            if (exito)
+                resultado = "Todo OK";
+            return exito;
+        }
+
+        internal int SolicitudAnden_ObtenerUltimoOrden(int soli_id)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            int orden = 0;
+            accesoDatos.CargarSqlComando("[dbo].[CARGA_ULTIMO_SOAN_ORDEN]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+            try
+            {
+                accesoDatos.EjecutarSqlLector();
+                orden = Convert.ToInt32(accesoDatos.SqlLectorDatos["SOAN_ORDEN"]);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            return orden;
+        }
+
+        private SolicitudAndenesBC cargarDatosSolicitudAnden(SqlDataReader reader)
+        {
+            SolicitudAndenesBC sa = new SolicitudAndenesBC();
+            sa.ID_SOLICITUD = int.Parse(reader["SOLI_ID"].ToString());
+            sa.ID_LUGAR = int.Parse(reader["LUGA_ID"].ToString());
+            sa.LUGAR = reader["LUGA_ID"].ToString();
+            sa.SOAN_ORDEN = int.Parse(reader["SOAN_ORDEN"].ToString());
+            if (!String.IsNullOrEmpty(reader["TIEMPO_ESTIMADO"].ToString()))
+                sa.MINS_CARGA_EST = int.Parse(reader["TIEMPO_ESTIMADO"].ToString());
+            if (!String.IsNullOrEmpty(reader["TIEMPO_REAL"].ToString()))
+                sa.TIEMPO_CARGA_REAL = int.Parse(reader["TIEMPO_REAL"].ToString());
+            if (!String.IsNullOrEmpty(reader["TIEMPO_ESTADIA"].ToString()))
+                sa.TIEMPO_ESTADIA = int.Parse(reader["TIEMPO_ESTADIA"].ToString());
+            if (!String.IsNullOrEmpty(reader["FECHA_ARRIBO"].ToString()))
+                sa.FECHA_ARRIBO = DateTime.Parse(reader["FECHA_ARRIBO"].ToString());
+            if (!String.IsNullOrEmpty(reader["FECHA_FIN_CARGA"].ToString()))
+                sa.FECHA_CARGA_FIN = DateTime.Parse(reader["FECHA_FIN_CARGA"].ToString());
+            if (!String.IsNullOrEmpty(reader["FECHA_SALIDA"].ToString()))
+                sa.FECHA_SALIDA = DateTime.Parse(reader["FECHA_SALIDA"].ToString());
+            sa.ID_SOES = int.Parse(reader["SOES_ID"].ToString());
+            sa.PALLETS_CARGADOS = int.Parse(reader["PALLETS"].ToString());
+            return sa;
+        }
+
+        #endregion
+
+        #region SolicitudLocales
+
+        internal bool SolicitudLocales_Crear(SolicitudLocalesBC solLocal)
+        {
+            bool exito = false;
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_LOCAL_DESTINO_V3]");
+            accesoDatos.AgregarSqlParametro("@ID_SOLICITUD", solLocal.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@ID_LOCAL", solLocal.ID_LOCAL);
+            accesoDatos.AgregarSqlParametro("@ID_LUGAR", solLocal.ID_LUGAR);
+            accesoDatos.AgregarSqlParametro("@PALLETS", solLocal.PALLETS);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", solLocal.SOAN_ORDEN);
+            accesoDatos.AgregarSqlParametro("@SOLD_ORDEN", solLocal.SOLD_ORDEN);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudLocales_Eliminar(SolicitudLocalesBC s)
+        {
+            bool exito = false;
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[ELIMINA_SOLICITUD_LOCAL]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", s.ID_SOLICITUD);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", s.ID_LUGAR);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", s.SOAN_ORDEN);
+            accesoDatos.AgregarSqlParametro("@LOCA_ID", s.ID_LOCAL);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal DataTable SolicitudLocales_XSolicitudTrai(int id)
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[OBTENER_LOCALES_X_SOLICITUD_TRAILER] " + id).Tables[0];
+        }
+
+
+        #endregion
+
+        #region Solicitud
+
+        internal bool Solicitud_Carga(SolicitudBC solicitud, out int soli_id, out string mensaje) //Solicitud Carga
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            mensaje = "";
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_CARGA_V2]");
+            //       accesoDatos.AgregarSqlParametro("@ID_TIPO", solicitud.ID_TIPO);
+            accesoDatos.AgregarSqlParametro("@SITE_ID", solicitud.ID_SITE);
+            accesoDatos.AgregarSqlParametro("@ID_USUARIO", solicitud.ID_USUARIO);
+            accesoDatos.AgregarSqlParametro("@FECHA_CREACION", solicitud.FECHA_CREACION);
+            accesoDatos.AgregarSqlParametro("@FECHA_PLAN_ANDEN", solicitud.FECHA_PLAN_ANDEN);
+            accesoDatos.AgregarSqlParametro("@DOCUMENTO", solicitud.DOCUMENTO);
+            accesoDatos.AgregarSqlParametro("@OBSERVACION", solicitud.OBSERVACION);
+            if (solicitud.ID_TRAILER_RESERVADO != 0 && solicitud.ID_TRAILER_RESERVADO != null)
+                accesoDatos.AgregarSqlParametro("@ID_TRAILER", solicitud.ID_TRAILER_RESERVADO);
+            //accesoDatos.AgregarSqlParametro("@ID_ORIGEN", 0);
+            //accesoDatos.AgregarSqlParametro("@ID_DESTINO", 0);
+            accesoDatos.AgregarSqlParametro("@TETR_ID", solicitud.TETR_ID);
+            accesoDatos.AgregarSqlParametro("@pallets", solicitud.Pallets);
+            accesoDatos.AgregarSqlParametro("@caracteristica", solicitud.CARACTERISTICAS);
+            accesoDatos.AgregarSqlParametro("@RUTA", solicitud.RUTA);
+            if (solicitud.ID_SHORTECK != "0" && solicitud.ID_SHORTECK != "")
+                accesoDatos.AgregarSqlParametro("@SHOR_ID", solicitud.ID_SHORTECK);
+            else
+                accesoDatos.AgregarSqlParametro("@SHOR_ID", DBNull.Value);
+            accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+            //            accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", mensaje);
+
+
+
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", mensaje); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+
+            try
+            {
+                accesoDatos.EjecutaSqlInsertIdentity();
+                soli_id = accesoDatos.ID;
+                solicitud.ID = accesoDatos.ID;
+                mensaje = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool Solicitud_CargaModificar(SolicitudBC solicitud, out string mensaje) //Solicitud Carga
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+
+            mensaje = "";
+            accesoDatos.CargarSqlComando("[dbo].[MODIFICA_SOLICITUD_CARGA]");
+            //       accesoDatos.AgregarSqlParametro("@ID_TIPO", solicitud.ID_TIPO);
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", solicitud.ID);
+            accesoDatos.AgregarSqlParametro("@pallets", solicitud.Pallets);
+            accesoDatos.AgregarSqlParametro("@caracteristicas", solicitud.CARACTERISTICAS);
+            accesoDatos.AgregarSqlParametro("@TEMPERATURA", solicitud.TETR_ID);
+            if (solicitud.ID_TRAILER_RESERVADO != 0)
+                accesoDatos.AgregarSqlParametro("@ID_TRAILER", solicitud.ID_TRAILER_RESERVADO);
+            accesoDatos.AgregarSqlParametro("@USUA_ID", solicitud.ID_USUARIO);
+            accesoDatos.AgregarSqlParametro("@RUTA", solicitud.RUTA);
+            if (solicitud.ID_SHORTECK != "0")
+                accesoDatos.AgregarSqlParametro("@SHOR_ID", solicitud.ID_SHORTECK);
+            else
+                accesoDatos.AgregarSqlParametro("@SHOR_ID", DBNull.Value);
+            accesoDatos.AgregarSqlParametroOUT("@ERROR", exito);
+            //   accesoDatos.AgregarSqlParametroOUT("@ERROR_MSG", mensaje);
+
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", mensaje); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                mensaje = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool Solicitud_Descarga(SolicitudBC solicitud, string bloqueados, out  string resultado) //Solicitud Descarga
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            bool errorint = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_DESCARGA]");
+            accesoDatos.AgregarSqlParametro("@SITE_ID", solicitud.ID_SITE);
+            accesoDatos.AgregarSqlParametro("@ID_USUARIO", solicitud.ID_USUARIO);
+            //       accesoDatos.AgregarSqlParametro("@FECHA_CREACION", solicitud.FECHA_CREACION);
+            //       accesoDatos.AgregarSqlParametro("@FECHA_PLAN_ANDEN", solicitud.FECHA_PLAN_ANDEN);
+            accesoDatos.AgregarSqlParametro("@DOCUMENTO", solicitud.DOCUMENTO);
+            accesoDatos.AgregarSqlParametro("@OBSERVACION", solicitud.OBSERVACION);
+            accesoDatos.AgregarSqlParametro("@ID_TRAILER", solicitud.ID_TRAILER);
+            //accesoDatos.AgregarSqlParametro("@ID_ORIGEN", solicitud.ID_ORIGEN);
+            accesoDatos.AgregarSqlParametro("@ID_DESTINO", solicitud.ID_DESTINO);
+            accesoDatos.AgregarSqlParametro("@BLOQUEADOS", bloqueados);
+
+            //accesoDatos.AgregarSqlParametro("@TEMPERATURA", 0);
+            accesoDatos.AgregarSqlParametro("@pallets", DBNull.Value);
+            //         accesoDatos.AgregarSqlParametro("@caracteristicas", "");
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+            accesoDatos.AgregarSqlParametro("@error", errorint).Direction = ParameterDirection.Output;
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+
+            return exito;
+        }
+
+        internal bool Solicitud_pallet(SolicitudBC solicitud, out  string resultado) //Solicitud Descarga
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            bool errorint = false;
+            resultado = "";
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_SOLICITUD_pallet]");
+            accesoDatos.AgregarSqlParametro("@SITE_ID", solicitud.ID_SITE);
+            accesoDatos.AgregarSqlParametro("@ID_USUARIO", solicitud.ID_USUARIO);
+            //       accesoDatos.AgregarSqlParametro("@FECHA_CREACION", solicitud.FECHA_CREACION);
+            //       accesoDatos.AgregarSqlParametro("@FECHA_PLAN_ANDEN", solicitud.FECHA_PLAN_ANDEN);
+            accesoDatos.AgregarSqlParametro("@DOCUMENTO", solicitud.DOCUMENTO);
+            accesoDatos.AgregarSqlParametro("@OBSERVACION", solicitud.OBSERVACION);
+            accesoDatos.AgregarSqlParametro("@ID_TRAILER", solicitud.ID_TRAILER);
+            //accesoDatos.AgregarSqlParametro("@ID_ORIGEN", solicitud.ID_ORIGEN);
+            accesoDatos.AgregarSqlParametro("@ID_DESTINO", solicitud.ID_DESTINO);
+            accesoDatos.AgregarSqlParametro("@ID_DESTINO_PALLET", solicitud.ID_DESTINO_PALLET);
+            //accesoDatos.AgregarSqlParametro("@TEMPERATURA", 0);
+            accesoDatos.AgregarSqlParametro("@pallets", DBNull.Value);
+            //         accesoDatos.AgregarSqlParametro("@caracteristicas", "");
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+            accesoDatos.AgregarSqlParametro("@error", errorint).Direction = ParameterDirection.Output;
+            exito = false;
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                if (resultado == "") exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+
+            return exito;
+        }
+
+        internal bool Solicitud_DescargaModifica(SolicitudBC solicitud) //Solicitud Descarga
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            accesoDatos.CargarSqlComando("[dbo].[MODIFICA_SOLICITUD_DESCARGA]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", solicitud.ID);
+            accesoDatos.AgregarSqlParametro("@OBSERVACION", solicitud.OBSERVACION);
+            //accesoDatos.AgregarSqlParametro("@ID_ORIGEN", solicitud.ID_ORIGEN);
+            accesoDatos.AgregarSqlParametro("@ID_LUGA_MOD", solicitud.ID_DESTINO);
+            //accesoDatos.AgregarSqlParametro("@TEMPERATURA", 0);
+            //accesoDatos.AgregarSqlParametro("@pallets", DBNull.Value);
+            //         accesoDatos.AgregarSqlParametro("@caracteristicas", "");
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool Solicitud_DescargaMovimiento(MovimientoBC movimiento, int site_id, int usua_id, out  string resultado)
+        {
+            bool exito = false;
+            bool errorint = false;
+            resultado = "";
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+            accesoDatos.CargarSqlComando("[dbo].[MOVIMIENTO_INTERNO_SOLICITUD_DESCARGA]");
+            accesoDatos.AgregarSqlParametro("@ID_DESTINO", movimiento.ID_DESTINO);
+            accesoDatos.AgregarSqlParametro("@ID_TRAILER", movimiento.ID_TRAILER);
+            accesoDatos.AgregarSqlParametro("@ID_SITE", site_id);
+            accesoDatos.AgregarSqlParametro("@movi_OBS", movimiento.OBSERVACION);
+            accesoDatos.AgregarSqlParametro("@usua_id", usua_id);
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", movimiento.ID_SOLICITUD);
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+            accesoDatos.AgregarSqlParametro("@error", errorint).Direction = ParameterDirection.Output;
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal DataTable Solicitud_Estados()
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_SOLICITUD_ESTADOS]").Tables[0];
+        }
+
+        internal DataTable Solicitud_EstadosCarga()
+        {
+            return accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_ESTADOS_SOLICITUD_CARGA]").Tables[0];
+        }
+
+        internal DataTable Solicitud_SolicitudesDescarga(int site_id, int tran_id, int luga_id)
+        {
+            accesoDatos.CargarSqlComando("[dbo].[CARGA_TODO_SOLICITUD_DESCARGA]");
+            DataTable dt = new DataTable();
+            try
+            {
+                if (site_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_SITE", site_id);
+                if (tran_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_TRAN", tran_id);
+                if (luga_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_LUGAR", luga_id);
+                dt = accesoDatos.EjecutarSqlquery2();
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                accesoDatos.LimpiarSqlParametros();
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return dt;
+        }
+
+        internal DataTable Solicitud_CargaSolicitudesPallets(int site_id, int tran_id, int luga_id)
+        {
+            accesoDatos.CargarSqlComando("[dbo].[CARGA_TODO_SOLICITUD_PALLETS]");
+            DataTable dt = new DataTable();
+            try
+            {
+                if (site_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_SITE", site_id);
+                if (tran_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_TRAN", tran_id);
+                if (luga_id != 0)
+                    accesoDatos.AgregarSqlParametro("@ID_LUGAR", luga_id);
+                dt = accesoDatos.EjecutarSqlquery2();
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                accesoDatos.LimpiarSqlParametros();
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return dt;
+        }
+
+        internal bool Solicitud_CargaPallets(int soli_id, int luga_id, out  string resultado, int usua_id)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            resultado = "";
+            bool exito = false;
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_PALLET_CARGA_COMPLETA]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", 1);
+            accesoDatos.AgregarSqlParametro("@usua_id", usua_id);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool Solicitud_DescargaPallets(int soli_id, int luga_id, out  string resultado, int usua_id)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            resultado = "";
+            bool exito = false;
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_PALLET_DESCARGA_COMPLETA]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", soli_id);
+            accesoDatos.AgregarSqlParametro("@SOAN_ORDEN", 2);
+            accesoDatos.AgregarSqlParametro("@usua_id", usua_id);
+            accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+            exito = false;
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                if (resultado == "") exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool Solicitud_CompletarDescarga(int id, int luga_id, out  string resultado, int usua_id)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            resultado = "";
+            bool exito = false;
+            accesoDatos.CargarSqlComando("[dbo].[prcSOLICITUD_ESTADO_DESCARGA_COMPLETA]");
+            accesoDatos.AgregarSqlParametro("@SOLI_ID", id);
+            accesoDatos.AgregarSqlParametro("@usua_id", usua_id);
+            if (luga_id != 0)
+                accesoDatos.AgregarSqlParametro("@LUGA_ID", luga_id);
+
+            SqlParameter param = accesoDatos.AgregarSqlParametro("@ERROR_MSG", resultado); param.Direction = ParameterDirection.Output; param.Size = 1000;
+
+
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                resultado = param.Value.ToString();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool Solicitud_Eliminar(int id, int id_user)
+        {
+            accesoDatos.LimpiarSqlParametros();
+            bool exito = false;
+            accesoDatos.CargarSqlComando("[dbo].[ELIMINA_SOLICITUD]");
+            accesoDatos.AgregarSqlParametro("@ID", id);
+            accesoDatos.AgregarSqlParametro("@ID_user", id_user);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal SolicitudBC Solicitud_ObtenerXId(int id)
+        {
+            SolicitudBC solicitud = new SolicitudBC();
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[CARGA_SOLICITUD_X_ID]");
+                accesoDatos.AgregarSqlParametro("@ID", id);
+                accesoDatos.EjecutarSqlLector();
+                while (accesoDatos.SqlLectorDatos.Read())
+                {
+                    solicitud = cargarDatosSolicitud(accesoDatos.SqlLectorDatos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return solicitud;
+        }
+
+        internal DataTable obtenertemperaturas(bool frio, bool congelado, bool seco, bool multifrio, bool ways)
+        {
+            DataTable dt;
+            try
+            {
+                accesoDatos.CargarSqlComando("[dbo].[CARGA_TEMPERATURA]");
+                accesoDatos.AgregarSqlParametro("@SECO", seco);
+                accesoDatos.AgregarSqlParametro("@FRIO", frio);
+                accesoDatos.AgregarSqlParametro("@congelado", congelado);
+                accesoDatos.AgregarSqlParametro("@multifrio", multifrio);
+                accesoDatos.AgregarSqlParametro("@ways", ways);
+                dt = accesoDatos.EjecutarSqlquery2();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return dt;
+        }
+
+        private SolicitudBC cargarDatosSolicitud(SqlDataReader reader)
+        {
+            SolicitudBC solicitud = new SolicitudBC();
+            solicitud.ID = int.Parse(reader["SOLI_ID"].ToString());
+            solicitud.TIPO = reader["TIPO_SOLICITUD"].ToString();
+            solicitud.USUARIO = reader["USUARIO_SOLICITUD"].ToString();
+            solicitud.FECHA_CREACION = DateTime.Parse(reader["FECHA_CREACION"].ToString());
+            solicitud.DOCUMENTO = reader["DOCUMENTO"].ToString();
+            solicitud.OBSERVACION = reader["OBSERVACIONES"].ToString();
+            solicitud.FECHA_PLAN_ANDEN = DateTime.Parse(reader["FECHA_PLAN_ANDEN"].ToString());
+            if (!String.IsNullOrEmpty(reader["SOTI_ID"].ToString()))
+                solicitud.ID_TIPO = int.Parse(reader["SOTI_ID"].ToString());
+            else
+                solicitud.ID_TIPO = 0;
+            if (!String.IsNullOrEmpty(reader["ID_TRAI_RESERVADO"].ToString()))
+                solicitud.ID_TRAILER_RESERVADO = int.Parse(reader["ID_TRAI_RESERVADO"].ToString());
+            else
+                solicitud.ID_TRAILER_RESERVADO = 0;
+            if (!String.IsNullOrEmpty(reader["ID_TAMANO"].ToString()))
+                solicitud.ID_TAMANO = int.Parse(reader["ID_TAMANO"].ToString());
+            else
+                solicitud.ID_TAMANO = 0;
+            if (!String.IsNullOrEmpty(reader["POS_DESTINO"].ToString()))
+                solicitud.POS_DESTINO = int.Parse(reader["POS_DESTINO"].ToString());
+            else
+                solicitud.POS_DESTINO = 0;
+            if (!String.IsNullOrEmpty(reader["TRAI_ID"].ToString()))
+                solicitud.ID_TRAILER = int.Parse(reader["TRAI_ID"].ToString());
+            else
+                solicitud.ID_TRAILER = 0;
+            if (!String.IsNullOrEmpty(reader["SOES_ID"].ToString()))
+                solicitud.ID_ESTADO = int.Parse(reader["SOES_ID"].ToString());
+            else
+                solicitud.ID_ESTADO = 0;
+            if (!String.IsNullOrEmpty(reader["TOTAL_PALLETS"].ToString()))
+                solicitud.Pallets = int.Parse(reader["TOTAL_PALLETS"].ToString());
+            else
+                solicitud.Pallets = 0;
+            if (!String.IsNullOrEmpty(reader["SITE_ID"].ToString()))
+                solicitud.ID_SITE = int.Parse(reader["SITE_ID"].ToString());
+            else
+                solicitud.ID_SITE = 0;
+            solicitud.PLACA_TRAILER = reader["TRAILER_PLACA"].ToString();
+            solicitud.ESTADO = reader["ESTADO"].ToString();
+            solicitud.CARACTERISTICAS = reader["CARACTERISTICAS"].ToString();
+            solicitud.RUTA = reader["RUTA"].ToString();
+            if (!String.IsNullOrEmpty(reader["TETR_ID"].ToString()))
+                solicitud.TETR_ID = int.Parse(reader["TETR_ID"].ToString());
+            else
+                solicitud.TETR_ID = 0;
+            if (!String.IsNullOrEmpty(reader["TEMPERATURA"].ToString()))
+                solicitud.TEMPERATURA = reader["TEMPERATURA"].ToString();
+            else
+                solicitud.TEMPERATURA = "0";
+
+            if (!String.IsNullOrEmpty(reader["SHOR_ID"].ToString()))
+                solicitud.ID_SHORTECK = reader["SHOR_ID"].ToString();
+            else
+                solicitud.ID_SHORTECK = "0";
+
+            if (!String.IsNullOrEmpty(reader["TIMESTAMP"].ToString()))
+                solicitud.TIMESTAMP = DateTime.Parse(reader["TIMESTAMP"].ToString());
+            else
+                solicitud.TIMESTAMP = DateTime.MinValue;
+
+            if (!String.IsNullOrEmpty(reader["PLAY_ID"].ToString()))
+                solicitud.PLAY_ID = int.Parse(reader["PLAY_ID"].ToString());
+            else
+                solicitud.PLAY_ID = 0;
+            return solicitud;
+        }
+
+        #endregion
+
+        #region Tipo
+
+        internal DataTable SolicitudTipo_ObtenerTodos()
+        {
+            return this.accesoDatos.dsCargarSqlQuery("[dbo].[CARGA_TODO_TIPO_SOLICITUD]").Tables[0];
+        }
+
+        internal SolicitudTipoBC SolicitudTipo_ObtenerXId(int id)
+        {
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+            SolicitudTipoBC solicitud_tipo = new SolicitudTipoBC();
+            try
+            {
+                accesoDatos.LimpiarSqlParametros();
+                accesoDatos.CargarSqlComando("[dbo].[CARGA_TIPO_SOLICITUD_X_ID]");
+                accesoDatos.AgregarSqlParametro("@ID", id);
+                accesoDatos.EjecutarSqlLector();
+                while (accesoDatos.SqlLectorDatos.Read())
+                {
+                    solicitud_tipo = this.cargarDatosSolicitudTipo(accesoDatos.SqlLectorDatos);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                accesoDatos.CerrarSqlConeccion();
+            }
+            return solicitud_tipo;
+        }
+
+        internal DataTable SolicitudTipo_ObtenerXParametro(string descripcion)
+        {
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+
+            String query = "[dbo].[CARGA_TIPOS_INGRESO_CARGA_X_CRITERIO] ";
+
+            if (descripcion != null && descripcion != String.Empty)
+            {
+                query += string.Format("@DESCRIPCION = N'{0}'", descripcion);
+            }
+            else
+            {
+                query += "@DESCRIPCION = NULL";
+            }
+
+            return accesoDatos.dsCargarSqlQuery(query).Tables[0];
+        }
+
+        internal bool SolicitudTipo_Crear(SolicitudTipoBC solicitud_tipo)
+        {
+            bool exito = false;
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[AGREGA_TIPO_SOLICITUD]");
+            accesoDatos.AgregarSqlParametro("@DESCRIPCION", solicitud_tipo.DESCRIPCION);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudTipo_Modificar(SolicitudTipoBC solicitud_tipo)
+        {
+            bool exito = false;
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[MODIFICA_TIPO_SOLICITUD]");
+            accesoDatos.AgregarSqlParametro("@ID", solicitud_tipo.ID);
+            accesoDatos.AgregarSqlParametro("@DESCRIPCION", solicitud_tipo.DESCRIPCION);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        internal bool SolicitudTipo_Eliminar(int id)
+        {
+            bool exito = false;
+            SqlAccesoDatos accesoDatos = new SqlAccesoDatos(SqlTransaccion.STRING_CONEXION);
+            accesoDatos.LimpiarSqlParametros();
+            accesoDatos.CargarSqlComando("[dbo].[ELIMINA_TIPO_SOLICITUD]");
+            accesoDatos.AgregarSqlParametro("@ID", id);
+            try
+            {
+                accesoDatos.EjecutarSqlEscritura();
+                exito = true;
+            }
+            catch (Exception ex)
+            {
+                exito = false;
+                throw (ex);
+            }
+            return exito;
+        }
+
+        private SolicitudTipoBC cargarDatosSolicitudTipo(SqlDataReader reader)
+        {
+            SolicitudTipoBC solicitud_tipo = new SolicitudTipoBC();
+            solicitud_tipo.ID = int.Parse(reader["ID"].ToString());
+            solicitud_tipo.DESCRIPCION = reader["DESCRIPCION"].ToString();
+            return solicitud_tipo;
+        }
+
+        #endregion
+    }
+}

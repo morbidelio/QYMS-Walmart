@@ -1,0 +1,135 @@
+.Container
+{
+    margin: auto;
+    min-height: 400px;
+    background: #ffffff;
+    max-width: 800px;
+    min-width: 500px;
+    border: solid 1px #d4d4d4;
+    padding: 0 20px 20px 20px;
+}
+.ToolBar
+{
+    border: solid 1px #d4d4d4;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.GridContainer
+{
+    background: #ECF5FB;
+    min-height: 300px;
+    border: solid 1px #d4d4d4;
+}
+.ModalPopupBG
+{
+    background-color: #666699;
+    filter: alpha(opacity=50);
+    opacity: 0.7;
+}
+.popup_Container
+{
+    border: 2px solid #000000;
+    padding: 0px 0px 0px 0px;
+    z-index: 300;
+}
+
+.popupConfirmation
+{
+    width: 620px;
+    height: 200px;
+    z-index:3000;
+}
+.popupFile
+{
+    width: 400px;
+    height: 200px;
+}
+.popup_Titlebar
+{
+    background: url(../Img/titlebar_bg2.jpg);
+    height: 29px;
+}
+
+.popup_Body
+{
+    padding:   15px 15px 15px 15px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 12px;
+    color: #000000;
+    line-height: 15pt;
+    clear: both;
+    padding: 20px;
+    z-index:3000;
+    background-image:url(../Img/Nuevas/fondoPopup.png);
+}
+
+.TitlebarLeft
+{
+    float: left;
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: 'font-qmgps' !important;
+    font-weight: bold;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.TitlebarRight
+{
+    background: url(../Img/cross_icon_normal.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 16px;
+    float: right;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.TitlebarRight2
+{
+    background: url(../Img/Nuevas/boton_azul/32x32/cerrar_popup.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 26px;
+    width: 26px;
+    float: right;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.popup_Buttons
+{
+    margin: 10px;
+}
+.popupGridView
+{
+    width: 620px;
+    height: 400px;
+}
+.updateProgress
+{
+	border-width: 1px;
+	border-style: solid;
+	background-color: #FFFFFF;
+	position: absolute;
+	width: 180px;
+	height: 65px;
+}
+
+#progressBackgroundFilter {
+    position:fixed;
+    top:-1131px;
+    bottom:-18px;
+    left:-11px;
+    right:11px;
+    overflow:hidden;
+    padding:0;
+    margin:0;
+    background-color:#000;
+    filter:alpha(opacity=50);
+    opacity:0.5;
+    z-index:1000;
+}

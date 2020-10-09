@@ -1,0 +1,226 @@
+﻿<style type="text/css">
+    .ul_interno
+    {
+        background-color: rgb(135,186,247) !important;
+        font-weight: bold;
+    }
+    .li_interno:hover
+    {
+        color: rgb(102, 204, 255) !important;
+    }
+    .ul_interno li:hover, .ul_interno li:focus
+    {
+        background: white !important;
+        color: black !important;
+    }
+    
+    #bajo-cabecera
+    {
+        height: 30px;
+    }
+    .dropdown-submenu
+    {
+        position: relative;
+        background: #87baf7;
+    }
+    .dropdown-submenu > .dropdown-menu
+    {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .dropdown-submenu:hover > .dropdown-menu
+    {
+        display: block;
+    }
+    .dropdown-submenu > a:after
+    {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+    .dropdown-submenu:hover > a:after
+    {
+        border-left-color: #fff;
+    }
+    .dropdown-submenu.pull-left
+    {
+        float: none;
+    }
+    .dropdown-submenu.pull-left > .dropdown-menu
+    {
+        left: -100%;
+        margin-left: 10px;
+        -webkit-border-radius: 6px 0 6px 6px;
+        -moz-border-radius: 6px 0 6px 6px;
+        border-radius: 6px 0 6px 6px;
+    }
+    
+    navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus
+    {
+        color: #fff;
+        background-color: white !important;
+    }
+</style>
+<nav ID="nav" class="navbar navbar-inverse NavQ navbar-fixed-top" style="margin-top: 0px"
+     role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+        <span class="sr-only">
+          Toggle navigation
+        </span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a id="menu-toggle" class="navbar-brand NavQA" href="#">
+        <img src="../img/img_icono_q/MMPFQ2.png" alt="Q Analytics" />
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navigationbar" >
+      <label id="lbl_menu"></label>
+      <% 
+      UsuarioBC u = (UsuarioBC)Session["USUARIO"]; 
+      string nombre = u.USERNAME;
+      %>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="NavQA"></li>
+        <li class="NavQA" style="padding:15px">
+          <span>
+            Bienvenido  <% Response.Write(nombre + " "); %>
+          </span>
+        </li>
+        <li class="NavQA" id="dv_nombreUsuario">
+        <a id="cambio" href="javascript:__doPostBack('ctl00$cambio_pass','')" style="color:inherit">Cambio Pass</a>
+        </li>
+        <li>
+          <a class="NavQA" href="../InicioQYMS2.aspx">
+            <span class="glyphicon glyphicon-log-in"></span>&nbsp;Logout
+          </a>
+        </li>
+      </ul>
+    </div>       
+        
+  </div>
+</nav>
+<div class="col-xs-12 separador">
+</div>
+<div class="col-xs-12 separador">
+</div>
+<div class="col-xs-12" id="bajo-cabecera">
+</div>
+<script type="text/javascript">
+    function modalCambioPass() {
+        $("#modalConfirmaciopass").modal();
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "../Master/menu_json.aspx/SendMessage",
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                var arr_menu = JSON.parse(result.d);
+
+                var menu;
+                menu = "<ul class='nav navbar-nav'>";
+                for (var r = 0; r <= arr_menu.length - 1; r++) {
+
+                    var id = arr_menu[r].Id;
+                    var id_sub = arr_menu[r].Id_sub_menu;
+                    //                    var id_sub_sub = arr_menu[r].Id_sub_sub_menu;
+                    //                    var icon = arr_menu[r].Icono;
+                    var m_menu = arr_menu[r].Nombre;
+                    var link = arr_menu[r].Link;
+                    //                    var sub = arr_menu[r].Tiene_sub;
+
+                    if (link == '' && id_sub == '') {
+                        //                        if (sub > 0) {
+
+                        menu = menu + "<li class='dropdown'>";
+                        menu = menu + "<a class='dropdown-toggle NavQA' data-toggle='dropdown' href='#'>" + m_menu + "</a>"
+                        menu = menu + "<ul class='dropdown-menu ul_interno'>";
+
+                        for (var m = r + 1; m <= arr_menu.length - 1; m++) {
+
+                            var s_id = arr_menu[m].Id;
+                            var s_id_sub = arr_menu[m].Id_sub_menu;
+                            //                                var s_icon = arr_menu[m].Icono;
+                            var s_menu = arr_menu[m].Nombre;
+                            var s_link = arr_menu[m].Link;
+                            //                                var s_sub_sub = arr_menu[m].Tiene_sub_sub;
+
+                            if (s_id_sub == id) {
+
+                                //                                    if (s_sub_sub > 0) {
+
+                                //                                        menu = menu + "<li class='dropdown-submenu'><a  style='color:#00489c !important;' href='#' ><span class='glyphicon" + s_icon + "' aria-hidden='true' ></span>" + s_menu + "</a>"
+                                //                                        menu = menu + "<ul class='dropdown-menu'>"
+
+                                //                                        for (var n = m + 1; n <= arr_menu.length - 1; n++) {
+
+                                //                                            var ss_id_sub_sub = arr_menu[n].Id_sub_sub_menu;
+                                //                                            var ss_menu = arr_menu[n].Nombre;
+                                //                                            var ss_link = arr_menu[n].Link;
+
+                                //                                            if (ss_id_sub_sub == s_id) {
+                                //                                                menu = menu + "<li><a  href=" + ss_link + "><small>" + ss_menu + "</small></a></li>"
+                                //                                            }
+                                //                                        }
+
+                                //                                        menu = menu + "</ul>"
+
+                                //                                    }
+                                //                                    else {
+                             //   menu = menu + "<li><a style='color:#00489c' href=" + s_link + ">" + s_menu + "</a></li>"
+                                menu = menu + "<li><a style='color:#00489c'" + " href=" + s_link + " onclick= javascript:redirige('" + s_link + "')>" + s_menu + "</a></li>"
+
+                                //                         
+                                //                                    }
+                            }
+                        }
+
+                        menu = menu + "</ul>"
+
+                        //                        }
+
+                    } else if (link != '#' && id_sub == '0' && id_sub_sub == '0') {
+                        menu = menu + "<li class='dropdown'>";
+                        menu = menu + "<a class='dropdown-toggle NavQA' href='" + link + "' ><span class='glyphicon " + icon + "' ></span>" + " " + m_menu + "</a>"
+                        menu = menu + "</li>"
+                    }
+                }
+                menu = menu + "</ul>"
+                document.getElementById("lbl_menu").innerHTML = menu
+
+            }
+        });
+    });
+
+    //    app.controller("opciones", function ($scope, $http) {
+    //        $http.get("../Master/menu_json.aspx")
+    //        .then(function (response) {
+
+    //            $scope.Op2 = response.data.records;
+    //            $scope.Sub = response.data.records2;
+    //            $scope.Sub2 = response.data.records3;
+    //        });
+
+    //    });
+</script>

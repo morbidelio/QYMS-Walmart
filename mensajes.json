@@ -1,0 +1,1269 @@
+{
+  "page": [
+    {
+      "name": "Caract_Carga.aspx",
+      "accion": [
+        {
+          "nombre": "crear",
+          "success": "Característica agregada correctamente",
+          "warn_codigoVacio": "Código obligatorio",
+          "warn_descripcionVacio": "Descripción obligatoria",
+          "warn_valorVacio": "Valor obligatorio",
+          "warn_tipoVacio": "Tipo obligatorio",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "modificar",
+          "success": "Característica modificada correctamente",
+          "error": "Error crítico."
+        }
+      ]
+    },
+    {
+      "name": "Caract_tipo_Carga.aspx",
+      "accion": [
+        {
+          "nombre": "crear",
+          "success": "Tipo característica agregada correctamente",
+          "warn_idVacio": "ID obligatorio",
+          "warn_descripcionVacio": "Descripción obligatoria",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "modificar",
+          "success": "Tipo característica modificada correctamente",
+          "error": "Error crítico."
+        }
+      ]
+    },
+    {
+      "name": "carga_solicitudes_excel.aspx",
+      "accion": [
+        {
+          "nombre": "cargaExcel",
+          "success": "Archivo cargado correctamente.",
+          "error": "Error: Revisar estructura del archivo, nombre de campos, orden, nombre de la hoja [Hoja1]."
+        },
+        {
+          "nombre": "procesa",
+          "success": "Solicitudes agregadas correctamente.",
+          "error": "Error."
+        }
+      ]
+    },
+    {
+      "name": "conductor_serv_ext.aspx",
+      "accion": [
+        {
+          "nombre": "crear",
+          "success": "Conductor agregado correctamente.",
+          "warn_rutVacio": "Rut obligatorio",
+          "warn_rutEncontrado": "Se han cargado los datos del conductor seleccionado.",
+          "warn_rutNoValido": "Rut no válido.",
+          "warn_nombreVacio": "Nombre obligatorio",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "modificar",
+          "success": "Conductor modificado correctamente",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "exportar",
+          "warn_sinFilas": "Debe cargar datos antes de exportar."
+        },
+        {
+          "nombre": "subirFoto",
+          "success": "Foto subida correctamente",
+          "warn_archivoInvalido": "Tipo de archivo inválido.",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "activar",
+          "success": "Conductor modificado correctamente",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "bloquear",
+          "success": "Conductor modificado correctamente",
+          "error": "Error crítico."
+        }
+      ]
+    },
+    {
+      "name": "conductor.aspx",
+      "accion": [
+        {
+          "nombre": "crear",
+          "success": "Conductor agregado correctamente.",
+          "warn_rutVacio": "Rut obligatorio",
+          "warn_rutEncontrado": "Se han cargado los datos del conductor seleccionado.",
+          "warn_rutNoValido": "Rut no válido.",
+          "warn_nombreVacio": "Nombre obligatorio",
+          "warn_transportistaVacio": "Transportista obligatorio",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "modificar",
+          "success": "Conductor modificado correctamente",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "exportar",
+          "warn_sinFilas": "Debe cargar datos antes de exportar."
+        },
+        {
+          "nombre": "subirFoto",
+          "success": "Foto subida correctamente",
+          "warn_archivoInvalido": "Tipo de archivo inválido.",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "activar",
+          "success": "Conductor modificado correctamente",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "bloquear",
+          "success": "Conductor modificado correctamente",
+          "error": "Error crítico."
+        }
+      ]
+    },
+    {
+      "name": "control_carga_new.aspx",
+      "accion": [
+        {
+          "nombre": "cargaParcial",
+          "warn_palletsVacio": "Cant. pallets obligatoria",
+          "warn_fechaVacio": "Fecha obligatoria",
+          "warn_horaVacio": "Hora obligatoria",
+          "success": "Carga parcial"
+        },
+        {
+          "nombre": "cargaCompleta",
+          "warn_fechaVacio": "Fecha obligatoria",
+          "warn_horaVacio": "Hora obligatoria",
+          "success": "Carga completada"
+        },
+        {
+          "nombre": "exportar",
+          "warn_sinFilas": "Debe cargar datos antes de exportar."
+        },
+        {
+          "nombre": "eliminarSolicitud",
+          "success": "Solicitud eliminada correctamente.",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "eliminarLocal",
+          "success": "Local de solicitud eliminado.",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "reanudar",
+          "success": "Carga reanudada",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "encender",
+          "success": "Termo encendido",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "validarSello",
+          "success": "Validando sello",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "validadoSello",
+          "success": "Carro cargado",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "andenEmergencia",
+          "success": "Andén emergencia ingresado correctamente",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "locales",
+          "success": "Locales agregados a la solicitud",
+          "warn_localVacio": "Local obligatorio",
+          "warn_andenVacio": "Andén obligatorio",
+          "warn_timestamp": "Timestamp incorrecto. Recargue los datos.",
+          "warn_ordenIncorrecto": "Órden incorrecto de los andenes.",
+          "warn_andenExiste": "Local ya ingresado.",
+          "error": "Error crítico"
+        }
+      ]
+    },
+    {
+      "name": "control_devolucion.aspx",
+      "accion": [
+        {
+          "nombre": "cargaParcial",
+          "warn_palletsVacio": "Cant. pallets obligatoria",
+          "warn_fechaVacio": "Fecha obligatoria",
+          "warn_horaVacio": "Hora obligatoria",
+          "success": "Carga parcial"
+        },
+        {
+          "nombre": "cargaCompleta",
+          "warn_fechaVacio": "Fecha obligatoria",
+          "warn_horaVacio": "Hora obligatoria",
+          "success": "Carga completada"
+        },
+        {
+          "nombre": "exportar",
+          "warn_sinFilas": "Debe cargar datos antes de exportar."
+        },
+        {
+          "nombre": "eliminarSolicitud",
+          "success": "Solicitud eliminada correctamente.",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "eliminarLocal",
+          "success": "Local de solicitud eliminado.",
+          "error": "Error crítico."
+        },
+        {
+          "nombre": "reanudar",
+          "success": "Carga reanudada",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "encender",
+          "success": "Termo encendido",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "validarSello",
+          "success": "Validando sello",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "validadoSello",
+          "success": "Carro cargado",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "andenEmergencia",
+          "success": "Andén emergencia ingresado correctamente",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "locales",
+          "success": "Locales agregados a la solicitud",
+          "warn_localVacio": "Local obligatorio",
+          "warn_andenVacio": "Andén obligatorio",
+          "warn_timestamp": "Timestamp incorrecto. Recargue los datos.",
+          "warn_ordenIncorrecto": "Órden incorrecto de los andenes.",
+          "warn_andenExiste": "Local ya ingresado.",
+          "error": "Error crítico"
+        },
+        {
+          "nombre": "descarga",
+          "success_completa": "Descarga completada correctamente.",
+          "success_crear": "Solicitud descarga creada correctamente.",
+          "warn_destinoVacio": "Posición obligatoria.",
+          "warn_destinoBloqueado": "Posición bloqueada. Quítelo de la lista o seleccione una posición diferente."
+        },
+        {
+          "nombre": "descargaBloquear",
+          "success_bloquear": "Posición bloqueada.",
+          "success_desbloquear": "Posición desbloqueada.",
+          "warn_destinoVacio": "Posición obligatoria.",
+          "warn_bloqueado": "Destino ya seleccionado.",
+          "warn_timestamp": "Timestamp incorrecto."
+        }
+      ]
+    },
+    {
+      "name": "preingreso_reserva.aspx",
+      "accion": [
+        {
+          "nombre": "edit",
+          "success": "Reserva preingreso agregada correctamente",
+          "warn_provVacio": "Proveedor requerido.",
+          "warn_siteVacio": "Site requerido.",
+          "warn_vendorVacio": "Vendor requerido.",
+          "warn_nroCitaVacio": "N° Cita requerido.",
+          "warn_fechaVacio": "Fecha requerido.",
+          "warn_horaVacio": "Hora requerido.",
+          "warn_tipoCargaVacio": "Tipo Carga requerido.",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        }
+      ]
+    },
+    {
+      "name": "proceso_entrada.aspx",
+      "accion": [
+        {
+          "nombre": "trailer",
+          "success": "Se cargaron los datos del trailer seleccionado.",
+          "warn_numeroVacio": "Número flota obligatorio",
+          "warn_vacio": "Número flota o placa obligatorio.",
+          "warn_numeroCero": "Número de flota no puede ser cero.",
+          "warn_patenteInvalida": "Patente inválida.",
+		  "warn_noExiste": "Trailer no existe, debe creaerlo.",
+		  "warn_tracto": "Placa corresponde a tracto."
+        },
+        {
+          "nombre": "tracto",
+          "warn_patenteInvalida": "Patente inválida."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "success_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "confirmar",
+          "success": "Ingreso correcto.",
+          "warn_posicionVacia": "Posición obligatoria.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_conductorVacio": "Conductor obligatorio."
+        },
+        {
+          "nombre": "posicion",
+          "warn_posAuto": "No se pudo asignar posición automática. Intente asignarla manualmente."
+        }
+      ]
+    },
+    {
+      "name": "proceso_entrada_ex.aspx",
+      "accion": [
+        {
+          "nombre": "trailer",
+          "success": "Se cargaron los datos del trailer seleccionado.",
+          "warn_placaVacio": "Placa trailer obligatorio",
+          "warn_numeroCero": "Número de flota no puede ser cero.",
+          "warn_noExiste": "Trailer no existe en la base de datos. Creélo antes de continuar.",
+          "warn_patenteInvalida": "Patente inválida.",
+		  "warn_tracto": "Placa corresponde a tracto."
+        },
+        {
+          "nombre": "tracto",
+          "warn_patenteInvalida": "Patente inválida."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "success_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "confirmar",
+          "success": "Ingreso correcto.",
+          "warn_posicionVacia": "Posición obligatoria.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_conductorVacio": "Conductor obligatorio."
+        },
+        {
+          "nombre": "posicion",
+          "warn_posAuto": "No se pudo asignar posición automática. Intente asignarla manualmente."
+        }
+      ]
+    },
+    {
+      "name": "proceso_entradav3.aspx",
+      "accion": [
+        {
+          "nombre": "cita",
+          "success": "Se cargaron los datos de la cita seleccionada.",
+          "warn_nroVacio": "N° cita obligatorio",
+          "warn_noExiste": "No se encontró el número de documento.",
+          "warn_fhDiferente": "Advertencia: Fecha y hora difieren de la fecha planificada.",
+          "warn_expirado": "Preingreso expirado."
+        },
+        {
+          "nombre": "tracto",
+          "warn_patenteInvalida": "Patente inválida."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "success_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "confirmar",
+          "success": "Ingreso correcto.",
+          "warn_posicionVacia": "Posición obligatoria.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_conductorVacio": "Conductor obligatorio."
+        },
+        {
+          "nombre": "posicion",
+          "warn_posAuto": "No se pudo asignar posición automática. Intente asignarla manualmente."
+        }
+      ]
+    },
+    {
+      "name": "proceso_entradav3_ex.aspx",
+      "accion": [
+        {
+          "nombre": "cita",
+          "success": "Se cargaron los datos de la cita seleccionada.",
+          "warn_nroVacio": "N° cita obligatorio",
+          "warn_noExiste": "No se encontró el número de documento.",
+          "warn_fhDiferente": "Advertencia: Fecha y hora difieren de la fecha planificada.",
+          "warn_expirado": "Preingreso expirado."
+        },
+        {
+          "nombre": "tracto",
+          "warn_patenteInvalida": "Patente inválida."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "confirmar",
+          "success": "Ingreso correcto.",
+          "warn_posicionVacia": "Posición obligatoria.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_conductorVacio": "Conductor obligatorio."
+        },
+        {
+          "nombre": "posicion",
+          "warn_posAuto": "No se pudo asignar posición automática. Intente asignarla manualmente."
+        }
+      ]
+    },
+    {
+      "name": "proceso_entrada_tracto.aspx",
+      "accion": [
+        {
+          "nombre": "tracto",
+          "success": "Se cargaron los datos del tracto seleccionado.",
+          "success_noExiste": "Tracto no existe en la base de datos. Se creará uno nuevo.",
+          "warn_trailer": "Placa corresponde a trailer",
+          "warn_placaVacio": "Placa tracto obligatorio",
+          "warn_patenteInvalida": "Patente inválida."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "confirmar",
+          "success": "Ingreso correcto.",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_tractoVacio": "Placa tracto obligatorio",
+          "warn_conductorVacio": "Conductor obligatorio."
+        },
+        {
+          "nombre": "posicion",
+          "warn_posAuto": "No se pudo asignar posición automática. Intente asignarla manualmente."
+        }
+      ]
+    },
+    {
+      "name": "proceso_entrada_servicios_externos.aspx",
+      "accion": [
+        {
+          "nombre": "buscar",
+          "success": "Se cargaron los datos del trailer seleccionado.",
+          "warn_patenteVacio": "Placa obligatorio.",
+          "warn_patenteInvalida": "Patente inválida.",
+          "warn_vehiculoIngresado": "Vehículo ya ingresado.",
+          "warn_noExiste": "Vehículo no existe. Se creará uno nuevo.",
+          "warn_trailer": "Patente corresponde a trailer."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "confirmar",
+          "success": "Ingreso correcto.",
+          "warn_posicionVacia": "Posición obligatoria.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_conductorVacio": "Conductor obligatorio.",
+          "warn_servExtVacio": "Servicio externo obligatorio.",
+          "error": "Ocurrió un error. Revise los datos"
+        },
+        {
+          "nombre": "posicion",
+          "warn_posAuto": "No se pudo asignar posición automática. Intente asignarla manualmente."
+        }
+      ]
+    },
+    {
+      "name": "proceso_preentrada.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "buscarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "buscarConductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        }
+      ]
+    },
+    {
+      "name": "proceso_preentradav2.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "buscarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "buscarConductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        }
+      ]
+    },
+    {
+      "name": "proceso_preentradav2_ex.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "success": "Preingreso correcto",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "tracto",
+          "warn_placaVacia": "Placa tracto obligatoria",
+          "warn_placaInvalida": "Placa tracto inválida",
+          "warn_placaTrailer": "Placa corresponde a trailer"
+        },
+        {
+          "nombre": "buscarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaNoExiste": "N° de cita no existe.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "buscarConductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "success_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "tracto",
+          "warn_placaVacia": "Placa tracto obligatoria",
+          "warn_placaInvalida": "Placa tracto inválida",
+          "warn_placaTrailer": "Placa corresponde a trailer"
+        }
+      ]
+    },
+    {
+      "name": "proceso_preentradav3_ex.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "success": "Preingreso correcto",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa trailer obligatoria.",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "No se ingresó ninguna cita.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "tracto",
+          "warn_placaVacia": "Placa tracto obligatoria",
+          "warn_placaInvalida": "Placa tracto inválida",
+          "warn_placaTrailer": "Placa corresponde a trailer"
+        },
+        {
+          "nombre": "trailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "success_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_rutNovalido": "Rut no válido."
+        }
+      ]
+    },
+    {
+      "name": "proceso_salida.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "success": "Salida correcta.",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_placaTractoVacia": "Placa tracto obligatoria.",
+          "warn_placaTractoInvalida": "Placa tracto inválida.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio.",
+          "warn_NombreVacio": "Nombre obligatorio.",
+          "warn_RolVacio": "Rol obligatorio.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "trailer",
+          "warn_noExiste": "Placa no encontrada.",
+          "warn_vacio": "Placa o nro flota obligatorios.",
+          "warn_placaInvalida": "Placa trailer inválida.",
+          "warn_placaTracto": "Placa corresponde a tracto.",
+          "warn_otroSite": "Trailer se encuentra en otro site.",
+          "warn_fueraSite": "Trailer en ruta.",
+          "success": "Se cargaron los datos del trailer seleccionado."
+        },
+        {
+          "nombre": "tracto",
+          "warn_placaVacia": "Placa tracto obligatoria.",
+          "warn_placaInvalida": "Placa tracto inválida.",
+          "warn_placaTrailer": "Placa corresponde a trailer."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorNoexiste": "Conductor no encontrado.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        }
+      ]
+    },
+    {
+      "name": "proceso_salidav2.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "success": "Salida correcta",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "buscarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "buscarConductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "buscarViaje",
+          "success": "Se cargaron los datos del viaje seleccionado.",
+          "warn_noEncontrado": "Viaje no encontrado",
+          "warn_viajeVacio": "Viaje obligatorio",
+          "warn_trailerNoExiste": "Placa trailer no existe",
+          "warn_trailerFuera": "Trailer en ruta",
+          "warn_trailerOtroSite": "Trailer no se encuentra dentro del site seleccionado"
+        }
+      ]
+    },
+    {
+      "name": "proceso_salida_ex.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "success": "Salida correcta",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "trailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_noExiste": "Placa no encontrada.",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "warn_otroSite": "Trailer se encuentra en otro site.",
+          "warn_fueraSite": "Trailer en ruta.",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        }
+      ]
+    },
+    {
+      "name": "proceso_salida_tracto.aspx",
+      "accion": [
+        {
+          "nombre": "guardar",
+          "success": "Salida correcta",
+          "warn_placaVacio": "No ha seleccionado ningún tracto.",
+          "warn_placaInvalida": "Placa no válida.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio."
+        },
+        {
+          "nombre": "tracto",
+          "success": "Se cargaron los datos del tracto seleccionado.",
+          "warn_noExiste": "Tracto no existe.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_placaInvalida": "Placa inválida.",
+          "warn_placaTracto": "Placa corresponde a tracto.",
+          "warn_otroSite": "Trailer se encuentra en otro site.",
+          "warn_fueraSite": "Trailer en ruta."
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado.",
+          "warn_rutNovalido": "Rut no válido."
+        }
+      ]
+    },
+    {
+      "name": "proceso_salida_lo_aguirre.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "success": "Salida correcta.",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "trailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "warn_noExiste": "No se encontró trailer",
+          "warn_otroSite": "Trailer se encuentra en otro site.",
+          "warn_fueraSite": "Trailer en ruta.",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "conductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        }
+      ]
+    },
+    {
+      "name": "proceso_salida_servicios_externos.aspx",
+      "accion": [
+        {
+          "nombre": "confirmar",
+          "warn_siteVacio": "Debe seleccionar un centro de distribuicion.",
+          "warn_placaVacia": "Placa obligatoria.",
+          "warn_conductorRutVacio": "Rut conductor obligatorio.",
+          "warn_conductorNombreVacio": "Nombre conductor obligatorio.",
+          "warn_docVacio": "N° Cita obligatorio.",
+          "warn_trailerVacio": "No ha seleccionado ningún trailer."
+        },
+        {
+          "nombre": "crearTransportista",
+          "success": "Transportista creado.",
+          "warn_RutVacio": "Rut obligatorio",
+          "warn_NombreVacio": "Nombre obligatorio",
+          "warn_RolVacio": "Rol obligatorio",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "buscarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_placaInvalida": "Placa inválida",
+          "warn_placaTracto": "Placa corresponde a tracto",
+          "success": "Se cargaron los datos del trailer seleccionado"
+        },
+        {
+          "nombre": "buscarConductor",
+          "success": "Conductor encontrado. Se completaron los datos.",
+          "warn_conductorBloqueado": "Conductor bloqueado.",
+          "warn_conductorNoexiste": "Conductor no encontrado. Se creará uno nuevo.",
+          "warn_rutNovalido": "Rut no válido."
+        },
+        {
+          "nombre": "agregarCita",
+          "warn_tipoCargaVacio": "Tipo carga obligatorio.",
+          "warn_citaVacia": "Cita obligatoria.",
+          "warn_citaSeleccionada": "Número de cita ya agregado.",
+          "warn_citaExiste": "Cita ya existe en la BD.",
+          "error": "Error de conexión."
+        },
+        {
+          "nombre": "agregarTrailer",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_tranVacio": "Transportista obligatorio",
+          "warn_placaExiste": "Trailer existe",
+          "success": "Trailer agregado correctamente.",
+          "error": "Error de conexión."
+        }
+      ]
+    },
+    {
+      "name": "proveedores.aspx",
+      "accion": [
+        {
+          "nombre": "modificar",
+          "success": "Proveedor modificado correctamente.",
+          "warn_codigoExisteCarga": "Existe otro proveedor con el mismo código. Se cargaron los datos del proveedor.",
+          "warn_codigoVacio": "Código requerido.",
+          "warn_rutVacio": "Rut requerido.",
+          "warn_descripcionVacio": "Descripción requerida.",
+          "warn_codigoExiste": "Existe otro proveedor con el mismo código.",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "crear",
+          "success": "Proveedor creado correctamente.",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "eliminar",
+          "success": "Proveedor eliminado correctamente.",
+          "error": "Error en la conexión."
+        },
+        {
+          "nombre": "crearVendor",
+          "success": "Número vendor agregado correctamente.",
+          "warn_nroExiste": "Número en uso",
+          "error": "Error en la conexión."
+        },
+        {
+          "nombre": "eliminarvendor",
+          "success": "Número vendor eliminado correctamente.",
+          "error": "Error en la conexión."
+        }
+      ]
+    },
+    {
+      "name": "solicitud_carga.aspx",
+      "accion": [
+        {
+          "nombre": "buscarTrailer",
+          "success": "Se cargaron los datos del trailer seleccionado.",
+          "warn_placaNroVacio": "Placa o N° Flota obligatorios.",
+          "warn_placaInvalida": "Placa inválida.",
+          "warn_trailerNoExiste": "Trailer no existe.",
+          "warn_trailerFueraCD": "Trailer no registrado en CD.",
+          "warn_trailerOtroCD": "Trailer registrado en otro CD.",
+          "warn_trailerCargando": "Trailer en carga.",
+          "warn_trailerDescargado": "Trailer descargado.",
+          "warn_trailerDescargando": "Trailer en descarga.",
+          "warn_trailerRuta": "Trailer en ruta.",
+          "warn_trailerBloqueado": "Trailer bloqueado.",
+          "warn_trailerSolPendiente": "Trailer con solicitud pendiente.",
+          "warn_trailerSolDistinta": "Trailer asignado a otra solicitud.",
+          "warn_trailerMantenimiento": "Trailer en mantenimiento.",
+          "warn_trailerMovPendiente": "Trailer con movimiento pendiente.",
+		  "warn_trailerIncompatible": "Trailer incompatible con solicitud.",
+          "error": "Error de conexión. Intente nuevamente."
+        },
+        {
+          "nombre": "nuevo",
+          "success": "Solicitud carga creada correctamente.",
+          "warn_ordenAnden": "Orden de los andenes incorrecto.",
+          "warn_horaInvalida": "Se necesita al menos una hora para colocar el trailer en andén.",
+          "warn_andenVacio": "No se seleccionó ningún andén para carga."
+        },
+        {
+          "nombre": "modifica",
+          "success": "Solicitud carga modificada correctamente.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_timestamp": "Timestamp incorrecto."
+        }
+      ]
+    },
+    {
+      "name": "solicitud_descarga.aspx",
+      "accion": [
+        {
+          "nombre": "buscarTrailer",
+          "success": "Se cargaron los datos del trailer seleccionado.",
+          "warn_datosVacio": "Placa o N° Flota obligatorios.",
+          "warn_trailerNoExiste": "Trailer no existe.",
+          "warn_trailerFueraCD": "Trailer no registrado en CD.",
+          "warn_trailerOtroCD": "Trailer registrado en otro CD.",
+          "warn_trailerCargando": "Trailer en carga.",
+          "warn_trailerDescargando": "Trailer en descarga.",
+          "warn_trailerCargado": "Trailer cargado.",
+          "warn_trailerRuta": "Trailer en ruta.",
+          "warn_trailerBloqueado": "Trailer bloqueado.",
+          "warn_trailerSolPendiente": "Trailer con solicitud pendiente.",
+          "warn_trailerSolDistinta": "Trailer asignado a otra solicitud.",
+          "warn_trailerMantenimiento": "Trailer en mantenimiento.",
+          "warn_trailerMovPendiente": "Trailer con movimiento pendiente.",
+          "warn_trailerIncompatible": "Trailer incompatible con solicitud.",
+          "error": "Error de conexión. Intente nuevamente."
+        },
+        {
+          "nombre": "guardar",
+          "success": "Solicitud descarga creada correctamente.",
+          "warn_destinoVacio": "Posición obligatoria.",
+          "warn_destinoBloqueado": "Posición bloqueada. Quítelo de la lista o seleccione una posición diferente."
+        },
+        {
+          "nombre": "bloquear",
+          "success": "Posición bloqueada.",
+          "warn_destinoVacio": "Posición obligatoria.",
+          "warn_existe": "Posición ya bloqueada.",
+          "warn_timestamp": "Timestamp incorrecto."
+        }
+      ]
+    },
+    {
+      "name": "solicitud_devolucion.aspx",
+      "accion": [
+        {
+          "nombre": "buscarTrailer",
+          "success": "Se cargaron los datos del trailer seleccinado.",
+          "warn_andenLocalVacio": "Debe seleccionar al menos un andén/local.",
+          "warn_andenIngresado": "Local ya agregado.",
+          "warn_placaNroVacio": "Placa o N° Flota obligatorios.",
+          "warn_trailerNoExiste": "Trailer no existe.",
+          "warn_trailerFueraCD": "Trailer no registrado en CD.",
+          "warn_trailerOtroCD": "Trailer registrado en otro CD.",
+          "warn_trailerCargando": "Trailer en carga.",
+          "warn_trailerDescargando": "Trailer en descarga.",
+          "warn_trailerCargado": "Trailer cargado.",
+          "warn_trailerRuta": "Trailer en ruta.",
+          "warn_trailerBloqueado": "Trailer bloqueado.",
+          "warn_trailerSolPendiente": "Trailer con solicitud pendiente.",
+          "warn_trailerSolDistinta": "Trailer asignado a otra solicitud.",
+          "warn_trailerMantenimiento": "Trailer en mantenimiento.",
+          "warn_trailerMovPendiente": "Trailer con movimiento pendiente.",
+          "warn_trailerIncompatible": "Trailer incompatible con solicitud.",
+          "error": "Error de conexión. Intente nuevamente."
+        },
+        {
+          "nombre": "editar",
+          "success_trasvasije": "Solicitud trasvasije creada correctamente.",
+          "success_despachar": "Solicitud despacho creada correctamente.",
+          "warn_ordenAnden": "Orden de los andenes incorrecto.",
+          "warn_horaInvalida": "Se necesita al menos una hora para colocar el trailer en andén.",
+          "warn_andenVacio": "No se seleccionó ningún andén para carga.",
+          "warn_trailerVacio": "Trailer obligatorio.",
+          "warn_andenDescargaVacio": "Andén descarga obligatorio.",
+          "warn_timestamp": "Timestamp incorrecto."
+        }
+      ]
+    },
+    {
+      "name": "timer_procesos.aspx",
+      "accion": [
+        {
+          "nombre": "nuevo",
+          "success": "Timer procesos agregado correctamente",
+          "warn_codigoVacio": "Código obligatorio",
+          "warn_descVacio": "Descripción obligatoria",
+          "warn_minsVacio": "Minutos obligatorios",
+          "warn_siteVacio": "Site obligatorio",
+          "warn_tipoZonaVacio": "Tipo zona obligatorio",
+          "warn_tipoPlayaVacio": "Tipo playa obligatorio",
+          "warn_estadoVacio": "Estado solicitud obligatorio",
+
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "modificar",
+          "success": "Timer procesos modificado correctamente",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "eliminar",
+          "success": "Timer procesos eliminado correctamente",
+          "error": "Error en la conexión. Compruebe los datos."
+        }
+      ]
+    },
+    {
+      "name": "trailer.aspx",
+      "accion": [
+        {
+          "nombre": "exportar",
+          "warn_sinFilas": "Debe cargar datos antes de exportar."
+        },
+        {
+          "nombre": "bloquear",
+          "success": "Trailer bloqueado correctamente.",
+          "warn_tipoVacio": "Debe seleccionar un tipo de bloqueo.",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "crear",
+          "success": "Trailer creado correctamente.",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "modificar",
+          "success": "Trailer modificado correctamente.",
+          "warn_nroExiste": "N° de flota duplicado",
+          "warn_placaExiste": "Placa duplicada",
+          "warn_placaVacia": "Placa obligatoria",
+          "warn_numeroVacio": "N° flota obligatorio",
+          "warn_transportistaVacio": "Transportista obligatorio",
+          "warn_tipoVacio": "Tipo trailer obligatorio",
+          "error": "Error en la conexión. Compruebe los datos ingresados."
+        },
+        {
+          "nombre": "eliminar",
+          "success": "Trailer eliminado correctamente.",
+          "error": "Error en la conexión."
+        }
+      ]
+    },
+    {
+      "name": "ver_preingresos.aspx",
+      "accion": [
+        {
+          "nombre": "eliminar",
+          "success": "Preingreso eliminado correctamente",
+          "error": "Error al eliminar registro"
+        }
+      ]
+    }
+  ]
+}

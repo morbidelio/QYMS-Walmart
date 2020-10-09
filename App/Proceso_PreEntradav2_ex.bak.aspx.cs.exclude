@@ -1,0 +1,737 @@
+﻿using System;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.UI;
+using Microsoft.Reporting.WebForms;
+using System.Web.UI.WebControls;
+
+
+
+
+public partial class App_Proceso_PreEntradav2_ex.bak : System.Web.UI.Page
+{
+    static UtilsWeb utils = new UtilsWeb();
+    // DataTable table;
+    
+
+    private TransportistaBC llenarTransportista()
+    {
+        TransportistaBC transportista = new TransportistaBC();
+        transportista.RUT = txt_editRut.Text.Replace(".", "");
+        transportista.NOMBRE = txt_editNombre.Text;
+        //transportista.PASS = txt_editPass.Text;
+        transportista.ROL = int.Parse(txt_editRol.Text);
+        return transportista;
+    }
+
+    protected void btn_tranGrabar_Click(object sender, EventArgs e)
+    {
+        string exito;
+        TransportistaBC transportista = llenarTransportista();
+        int id;
+        if (transportista.Crear(out id))
+        {
+            exito = "Todo OK!";
+        }
+        else
+            exito = "Error!";
+        TransportistaBC tran = new TransportistaBC();
+        utils.CargaDrop(this.ddl_transportista, "ID", "NOMBRE", tran.ObtenerTodos());
+        ddl_transportista.SelectedValue = id.ToString();
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('" + exito + "');", true);
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "cerrar", "cerrarModal('modalTransportista');", true);
+    }
+
+    protected void btn_limpiar_Click(object sender, EventArgs e)
+    {
+        CreaDataTable();
+        txt_buscarDoc.Text = "";
+        this.txt_ingresoFecha.Text = DateTime.Now.ToShortDateString();
+        this.txt_ingresoHora.Text = DateTime.Now.ToShortTimeString();
+        hf_idTrailer.Value = "";
+        hf_idCond.Value = "";
+        txt_buscarPatente.Text = "";
+        txt_traExtPat.Text = "";
+        txt_conductorRut.Text = "";
+        txt_conductorNombre.Text = "";
+        txt_acomRut.Text = "";
+        txt_idSello.Text = "";
+        txt_obs.Text = "";
+        ddl_editTran.ClearSelection();
+        ddl_tipo_carga.ClearSelection();
+        ddl_transportista.ClearSelection();
+
+        txt_traExtPat.Enabled = false;
+        txt_conductorRut.Enabled = false;
+        txt_conductorNombre.Enabled = false;
+        txt_acomRut.Enabled = false;
+        txt_idSello.Enabled = false;
+        ddl_tipo_carga.Enabled = false;
+        ddl_proveedor.Enabled = false;
+        txt_doc2.Enabled = false;
+        this.extranjero.Enabled = true;
+    }
+
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        if (Session["Usuario"] != null)
+        {
+            UsuarioBC usuario = new UsuarioBC();
+            usuario = (UsuarioBC)Session["Usuario"];
+
+            if (usuario.TIPO != "Proveedor")
+            {
+                Response.Redirect("~/inicioQYMS2.aspx");
+            }
+        }
+        else
+        {
+            Response.Redirect("~/inicioQYMS2.aspx");
+        }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //this.nuevo_trailer.ButtonClickDemo += new EventHandler(trailercreado);
+
+        if (!this.IsPostBack)
+        {
+            CreaDataTable();
+
+            //     Page.LoadComplete += new EventHandler(Page_LoadComplete);
+            this.txt_ingresoFecha.Text = DateTime.Now.ToShortDateString();
+            this.txt_ingresoHora.Text = DateTime.Now.ToShortTimeString();
+            TransportistaBC tran = new TransportistaBC();
+            ProveedorBC proveedor = new ProveedorBC();
+            CargaTipoBC c = new CargaTipoBC();
+            YMS_ZONA_BC yms = new YMS_ZONA_BC();
+            DataTable ds = yms.ObteneSites(((UsuarioBC)Session["Usuario"]).ID);
+            utils.CargaDrop(this.dropsite, "ID", "NOMBRE", ds);
+            this.drop_SelectedIndexChanged(null, null);
+
+            LugarBC lugar = new LugarBC();
+            utils.CargaDrop(this.ddl_proveedor, "ID", "DESCRIPCION", proveedor.obtenerTodo());
+            ddl_proveedor.SelectedValue = ((UsuarioBC)Session["Usuario"]).ID_PROVEEDOR.ToString();
+            //  utils.CargaDrop(ddl_zona, "ID", "DESCRIPCION", zona.ObtenerTodas());
+            utils.CargaDrop(this.ddl_transportista, "ID", "NOMBRE", tran.ObtenerTodos());
+            utils.CargaDrop(this.ddl_editTran, "ID", "NOMBRE", tran.ObtenerTodos());
+            utils.CargaDrop(this.ddl_tipo_carga, "ID", "DESCRIPCION", yms.obtenerTipoCarga(null, true, false));
+        }
+        else
+        {
+            
+        }
+    }
+
+    public static Boolean IsNumeric(string valor)
+    {
+        int result;
+        return int.TryParse(valor, out result);
+    }
+
+    protected void btn_AgregarListado_Click(object sender, EventArgs e)
+    {
+        txt_doc2.Text = txt_doc2.Text.Replace(" ", "");
+        if (txt_doc2.Text != ""  )  //(ddl_bloquearPos.SelectedValue != "0" && ddl_bloquearPos.SelectedIndex != 0)
+        {
+
+            DataTable table = (DataTable) (ViewState["table"]);
+            DataView dw = table.AsDataView();
+         //   DataView dw = ((DataTable)ViewState["lista"]).AsDataView();
+            dw.RowFilter = "POSICION1 = '" + txt_doc2.Text+"'";
+            if (dw.ToTable().Rows.Count == 0)
+            {
+
+                PreEntradaBC p = new PreEntradaBC();
+                if (p.ObtenerXDoc(txt_doc2.Text, dropsite.SelectedValue) == false)
+                {
+                    try
+                    {
+                        DataRow row = table.NewRow();
+                        row["ZONA1"] = ddl_tipo_carga.SelectedValue;
+                        row["ZONA"] = ddl_tipo_carga.SelectedItem.Text;
+
+                        if (ddl_motivo.SelectedValue != "0")
+                        {
+                            row["PLAYA1"] = ddl_motivo.SelectedValue;
+                            row["PLAYA"] = ddl_motivo.SelectedItem.Text;
+                        }
+                        else
+                        {
+                            row["PLAYA1"] = ddl_motivo.SelectedValue;
+                            row["PLAYA"] = "";
+                        }
+
+                        row["POSICION1"] = txt_doc2.Text;
+                        row["POSICION"] = txt_doc2.Text;
+                        table.Rows.Add(row);
+                        ViewState["lista"] = table;
+                        this.gv_Seleccionados.DataSource = table;
+                        this.gv_Seleccionados.DataBind();
+
+                        ddl_tipo_carga.SelectedValue = "0";
+                        ddl_motivo.SelectedValue = "0";
+                        txt_doc2.Text = "";
+                        ViewState["table"] = table;
+                    }
+                    catch (Exception EX)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Ocurrió un error!');", true);
+                    }
+
+                }
+
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Cita ya existe!');", true);
+                }
+            }
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Cita ya seleccionada!');", true);
+
+        }
+        else
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('seleccione una cita!');", true);
+    }
+
+    public void CreaDataTable()
+    {
+        DataTable table = new DataTable();
+        this.gv_Seleccionados.DataSource = null;
+        this.gv_Seleccionados.DataBind();
+        table.Columns.Clear();
+        table.Columns.Add("ZONA1", typeof(String));
+        table.Columns.Add("ZONA", typeof(String));
+        table.Columns.Add("PLAYA1", typeof(String));
+        table.Columns.Add("PLAYA", typeof(String));
+        table.Columns.Add("POSICION1", typeof(String));
+        table.Columns.Add("POSICION", typeof(String));
+        ViewState["table"]=table;
+
+    }
+
+    public void gv_seleccionados_rowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        DataTable table = (DataTable)(ViewState["table"]);
+
+        int index = int.Parse(e.CommandArgument.ToString());
+        table.Rows[index].Delete();
+        this.gv_Seleccionados.DataSource = table;
+        this.gv_Seleccionados.DataBind();
+        ViewState["table"] = table;
+    }
+
+
+    #region TextBox
+
+    protected void txt_editRutTran_TextChanged(object sender, EventArgs e)
+    {
+        // TODO: Implement this method
+        throw new NotImplementedException();
+    }
+
+    protected void txt_editPlaca_TextChanged(object sender, EventArgs e)
+    {
+        TrailerBC t = new TrailerBC();
+        t = t.obtenerXPlaca(txt_editPlaca.Text);
+        if (t.ID != 0 && t.ID != null)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Trailer ya existe en la base de datos!');", true);
+            txt_editPlaca.Text = "";
+            txt_editPlaca.Focus();
+        }
+    }
+
+    protected void txt_buscarDoc_TextChanged(object sender, EventArgs e)
+    {
+        TrailerBC trailer = new TrailerBC();
+        trailer = trailer.obtenerXDoc(txt_buscarDoc.Text, dropsite.SelectedValue);
+        if (trailer.ID != 0 && trailer.ID != null)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Documento ya existente.');", true);
+            txt_buscarDoc.Text = "";
+            txt_buscarDoc.Focus();
+        }
+    }
+
+    protected void txt_conductorRut_TextChanged(object sender, EventArgs e)
+    {
+        if (extranjero.Checked==true ||   utils.validarRut(txt_conductorRut.Text))
+        {
+            ConductorBC c = new ConductorBC();
+           if (extranjero.Checked==false) c = c.ObtenerXRut(utils.formatearRut(txt_conductorRut.Text));
+           else c = c.ObtenerXRut(txt_conductorRut.Text);
+            
+            if (c.ID != 0)
+            {
+                txt_conductorNombre.Text = c.NOMBRE;
+                txt_conductorNombre.Enabled = false;
+                hf_idCond.Value = c.ID.ToString();
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "msj", "showAlert('Se completaron los datos!');", true);
+                txt_acomRut.Focus();
+            }
+            else
+            {
+                txt_conductorNombre.Enabled = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "msj", "alert('Conductor no encontrado. Se creará uno nuevo.');", true);
+                hf_idCond.Value = "";
+                txt_conductorNombre.Focus();
+            }
+        }
+        else
+        {
+            txt_conductorNombre.Enabled = false;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "msj", "alert('Rut no válido!');", true);
+            hf_idCond.Value = "";
+            txt_conductorRut.Text = "";
+            txt_conductorNombre.Text = "";
+            txt_conductorRut.Focus();
+        }
+    }
+
+    #endregion
+
+    #region DropDownList
+
+    protected void drop_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        SiteBC s = new SiteBC();
+        s = s.ObtenerXId(int.Parse(dropsite.SelectedValue));
+        lbl_site.Text = "CD " + s.DESCRIPCION;
+        //YMS_ZONA_BC yms = new YMS_ZONA_BC();
+        string tipo_zona;
+        if (this.rb_ingresoCargado.Checked == true)
+        {
+            tipo_zona = "200";
+        }
+        else
+        {
+            tipo_zona = "100";
+        }
+
+        if (txt_buscarPatente.Text != "" && txt_buscarPatente.Text != null)
+            this.btnBuscarTrailer_Click(null, null);
+    }
+
+    #endregion
+
+    #region Buttons
+
+    protected void generaPDF(object sender, EventArgs e)
+    {
+        ReportBC r = new ReportBC();
+        DataTable dt = r.CargarPreEntradaDT(Convert.ToInt32(hf_id.Value));
+        DataColumn codigobarras = new DataColumn("DOC_IMPRESION");
+        codigobarras.DataType = typeof(byte[]);
+        dt.Columns.Add(codigobarras);
+        Barcode_BC barcode = new Barcode_BC("code128", 005, dt.Rows[0]["DOC_INGRESO_BARRAS"].ToString());
+        dt.Columns["DOC_IMPRESION"].ReadOnly = false;
+        // dt.Columns["DOC_IMPRESION"].DataType = typeof(System.Drawing.Image);
+        dt.Rows[0]["DOC_IMPRESION"] = barcode.Byte;
+
+        DataColumn codigobarras2 = new DataColumn("DOC_PATENTE");
+        codigobarras2.DataType = typeof(byte[]);
+        dt.Columns.Add(codigobarras2);
+        Barcode_BC barcode2 = new Barcode_BC("CODE_39", 003, dt.Rows[0]["TRAI_PLACA"].ToString().ToUpper()); //   dt.Rows[0]["TRAI_PLACA"].ToString().ToUpper());
+        dt.Columns["DOC_PATENTE"].ReadOnly = false;
+        // dt.Columns["DOC_IMPRESION"].DataType = typeof(System.Drawing.Image);
+        dt.Rows[0]["DOC_PATENTE"] = barcode2.Byte;
+
+        ReportDataSource dataSource = new ReportDataSource("DataSet1", dt);
+        limpiarTodo();
+       
+        //   barcode.Symbology = KeepAutomation.Barcode.Symbology.Code11;
+        //  barcode.CodeToEncode = row.ProductID.ToString();
+        //    barcode.ImageFormat = System.Drawing.Imaging.ImageFormat.Png;
+  
+        ReportViewer1.LocalReport.DataSources.Clear();
+        ReportViewer1.LocalReport.DataSources.Add(dataSource);
+
+        Warning[] warnings;
+        string[] streamids;
+        string mimeType;
+        string encoding;
+        string extension;
+        //Word
+        byte[] bytes = ReportViewer1.LocalReport.Render(
+            "PDF", null, out mimeType, out encoding,
+            out extension,
+            out streamids, out warnings);
+        //byte[] renderedBytes = this.ReportViewer1.LocalReport.Render("PDF");
+        Response.Clear();
+
+        Response.ContentType = mimeType;
+
+        Response.AddHeader("content-disposition", "attachment; filename=Doc_PreIngreso_" + txt_buscarDoc.Text + '.' + extension);
+
+        Response.BinaryWrite(bytes);
+
+        Response.End();
+    }
+
+    protected void btn_editGrabar_Click(object sender, EventArgs e)
+    {
+        TrailerBC t = new TrailerBC();
+        t.PLACA = txt_editPlaca.Text;
+        t.TRAN_ID = int.Parse(ddl_editTran.SelectedValue);
+        if (t.CrearGenerico(t, extranjero.Checked))
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Trailer agregado correctamente.');", true);
+            this.hf_idTrailer.Value = t.ID.ToString();
+            this.txt_buscarPatente.Text = t.PLACA;
+            this.ddl_transportista.SelectedValue = t.TRAN_ID.ToString();
+            btnBuscarTrailer_Click(null, null);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "cerrar", "$('#modalTrailer').modal('hide');", true);
+        }
+    }
+
+    protected void btn_Conf_Click(object sender, EventArgs e)
+    {
+        //UpdatePanel4.Update();
+        txt_editPlaca.Text = txt_buscarPatente.Text;
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "modal", "modalTrailer();", true);
+    }
+
+    protected void btnBuscarTrailer_Click(object sender, EventArgs e)
+    {
+        TrailerBC trailer = new TrailerBC();
+
+        trailer = trailer.obtenerXPlaca(txt_buscarPatente.Text);
+
+        if (extranjero.Checked==false && utils.patentevalida(txt_buscarPatente.Text) == false)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Patente Invalida.');", true);
+        }
+        else if (trailer.ID == 0 || trailer.ID == null) //Trailer nuevo, no existe
+        {
+            TractoBC tracto = new TractoBC();
+            if (txt_buscarPatente.Text != "") tracto = tracto.ObtenerXPatente(txt_buscarPatente.Text);
+            if (tracto.ID > 0)
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Placa Corresponde a tracto');", true);
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "modal", "modalConfirmar();", true);
+            this.extranjero.Enabled = false;
+        }
+        else //Trailer existente, trae datos
+        {
+            this.hf_idTrailer.Value = trailer.ID.ToString();
+            this.txt_buscarPatente.Text = trailer.PLACA;
+            this.ddl_transportista.SelectedValue = trailer.TRAN_ID.ToString();
+            if (trailer.EXTERNO)
+            {
+                this.rb_propio.Checked = false;
+                this.rb_externo.Checked = true;
+            }
+            else
+            {
+                this.rb_propio.Checked = true;
+                this.rb_externo.Checked = false;
+            }
+            this.ddl_tipo_carga.Enabled = true;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "showAlert('Se cargaron los datos del trailer seleccionado.');", true);
+
+            this.txt_traExtPat.Enabled = true;
+            // this.ddl_proveedor.Enabled = true;
+            //    this.txt_doc.Enabled = true;
+            this.txt_idSello.Enabled = true;
+            this.txt_conductorRut.Enabled = true;
+            this.txt_conductorNombre.Enabled = true;
+            this.txt_acomRut.Enabled = true;
+            this.txt_doc2.Enabled = true;
+            this.extranjero.Enabled = false;
+        }
+    }
+
+    protected void btn_confirmar_Click(object sender, EventArgs e)
+    {
+        //TrailerBC trailer = new TrailerBC();
+        //trailer = trailer.obtenerXDoc(txt_buscarDoc.Text, dropsite.SelectedValue);
+        //if (trailer.ID != 0 && trailer.ID != null)
+        //{
+        //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Documento ya existente.');", true);
+        //    txt_buscarDoc.Text = "";
+        //    txt_buscarDoc.Focus();
+        //}
+
+        if (dropsite.SelectedValue=="0")
+        {
+
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje3", "alert('Debe seleccionar Centro de Distribucion');", true);
+               
+        }
+
+        else
+        {
+            try
+            {
+                if (this.hf_idTrailer.Value == "")
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje2", "alert('Debe ingresar Trailer');", true);
+                    limpiarTodo();
+                }
+                else
+                {
+                    PreEntradaBC p = new PreEntradaBC();
+                    if (hf_idCond.Value == "")
+                    {
+                        ConductorBC conductor = new ConductorBC();
+                        
+                        if (extranjero.Checked==false) conductor.RUT = utils.formatearRut(txt_conductorRut.Text);
+                        else conductor.RUT = txt_conductorRut.Text; 
+                        
+                        conductor.NOMBRE = txt_conductorNombre.Text;
+                        conductor.TRAN_ID = int.Parse(ddl_transportista.SelectedValue);
+                        conductor.COND_EXTRANJERO = extranjero.Checked;
+                        c.COND_EXTRANJERO = chk_conductorExtranjero.Checked;
+                        p.COND_ID = conductor.AgregarIdentity(conductor);
+                        hf_idCond.Value = p.COND_ID.ToString();
+                    }
+                    else
+                        p.COND_ID = int.Parse(hf_idCond.Value);
+                    p.SITE_ID = int.Parse(dropsite.SelectedValue);
+                    p.TRAI_ID = int.Parse(hf_idTrailer.Value);
+                    p.FECHA = DateTime.Parse(txt_ingresoFecha.Text + " " + txt_ingresoHora.Text);
+                    p.ESTADO = 1;
+                    p.DOC_INGRESO = txt_buscarDoc.Text;
+                    p.RUT_CHOFER = utils.formatearRut(txt_conductorRut.Text);
+                    p.Observacion = txt_obs.Text;
+                    p.NOMBRE_CHOFER = txt_conductorNombre.Text;
+                    p.RUT_ACOMP = txt_acomRut.Text;
+                  //  p.extranjero = extranjero.Checked;
+                    if (rb_ingresoVacio.Checked)
+                    {
+                        p.SELLO_INGRESO = txt_idSello.Text;
+                        p.CARGADO = false;
+                    }
+                    if (rb_ingresoCargado.Checked)
+                    {
+                        p.PROV_ID = int.Parse(ddl_proveedor.SelectedValue);
+                        p.TIIC_ID = int.Parse(ddl_tipo_carga.SelectedValue);
+                        p.MOIC_ID = int.Parse(ddl_motivo.SelectedValue);
+                        p.SELLO_CARGA = txt_idSello.Text;
+                        p.PATENTE_TRACTO = txt_traExtPat.Text;
+                        p.CARGADO = true;
+                    }
+                    DataTable table = (DataTable)(ViewState["table"]);
+
+                    DataTable citas = table.Clone();
+                    foreach (DataRow drtableOld in table.Rows)
+                    {
+                        citas.ImportRow(drtableOld);
+                    }
+
+                    citas.Columns.RemoveAt(5);
+                    citas.Columns.RemoveAt(3);
+                    citas.Columns.RemoveAt(1);
+
+                    citas.Columns[0].ColumnName = "tipo_carga";
+                    citas.Columns[1].ColumnName = "motivo_carga";
+                    citas.Columns[2].ColumnName = "numero_cita";
+                    
+                    
+
+
+                    p.citas = citas;
+
+                    string error = "";
+
+          
+
+                    int id;
+                    TrailerBC trailer_tracto = new TrailerBC();
+
+                    if (this.txt_traExtPat.Text != "")
+                    {
+
+                        trailer_tracto = trailer_tracto.obtenerXPlaca(this.txt_traExtPat.Text);
+                    }
+
+
+                    if (utils.patentevalida(this.txt_traExtPat.Text) == false && extranjero.Checked==false)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('" + "patente de Tracto Invalida" + "');", true);
+                    }
+
+                    else if (trailer_tracto.ID > 0 && trailer_tracto.ID != p.TRAI_ID)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('" + "Tracto corresponde a trailer" + "');", true);
+
+                    }
+     
+                    else  if (p.Crear(p, out id, out error) && error == "")
+                    {
+                        if (id != 0 )
+                        {
+                            
+                            hf_id.Value = id.ToString();
+                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "showAlert('Preingreso correcto.');", true);
+                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "generarPDF", "generaPDF();", true);
+                            CreaDataTable();
+                        }
+                        else
+                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('" + error + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('" + error + "');", true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "mensaje", "alert('Error! No se pudo ingresar los datos.');", true);
+            }
+        }
+    }
+
+    #endregion
+
+    #region CheckBox
+
+    protected void chk_ingresoCargado_CheckedChanged(object sender, EventArgs e)
+    {
+        if (!String.IsNullOrEmpty(hf_idTrailer.Value))
+        {
+            //    this.drop_SelectedIndexChanged(null, null);
+            if (this.rb_ingresoCargado.Checked == true)
+            {
+                ddl_tipo_carga.Enabled = true;
+            }
+            else
+            {
+                ddl_tipo_carga.Enabled = false;
+            }
+            tipo_carga_SelectedIndexChanged(null, null);
+
+            if (this.rb_ingresoCargado.Checked)
+            {
+                this.txt_traExtPat.Enabled = true;
+                //this.ddl_proveedor.Enabled = true;
+                //            this.txt_doc.Enabled = true;
+                this.txt_idSello.Enabled = true;
+            }
+            else
+            {
+                this.txt_traExtPat.Enabled = false;
+                //this.ddl_proveedor.Enabled = false;
+                //     this.txt_doc.Enabled = false;
+                this.txt_idSello.Enabled = false;
+            }
+        }
+    }
+
+    protected void tipo_carga_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        YMS_ZONA_BC yms = new YMS_ZONA_BC();
+
+        if (ddl_tipo_carga.SelectedValue == "0")
+        {
+            ddl_motivo.Items.Clear();
+            ddl_motivo.Enabled = false;
+        }
+        else
+        {
+            utils.CargaDrop(this.ddl_motivo, "ID", "DESCRIPCION", yms.obtenerMotivoTipoCarga(ddl_tipo_carga.SelectedValue, null));
+
+            ddl_motivo.Enabled = true;
+        }
+    }
+
+    #endregion
+
+    #region UtilsPagina
+
+    private void limpiarTodo()
+    {
+        CreaDataTable();
+        hf_idTrailer.Value = "";
+        txt_ingresoFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        txt_ingresoHora.Text = DateTime.Now.ToShortTimeString();
+        txt_buscarPatente.Text = "";
+        rb_propio.Checked = false;
+        rb_externo.Checked = false;
+        txt_conductorNombre.Text = "";
+        txt_conductorRut.Text = "";
+        txt_acomRut.Text = "";
+        txt_traExtPat.Text = "";
+        //   txt_doc.Text = "";
+        txt_idSello.Text = "";
+        txt_conductorNombre.Enabled = false;
+        txt_conductorRut.Enabled = false;
+        txt_acomRut.Enabled = false;
+        txt_traExtPat.Enabled = false;
+        //    txt_doc.Enabled = false;
+        txt_idSello.Enabled = false;
+        txt_obs.Text = "";
+        txt_buscarDoc.Text = "";
+        ddl_transportista.ClearSelection();
+        ddl_tipo_carga.ClearSelection();
+        ddl_tipo_carga.Enabled = false;
+        ddl_transportista.ClearSelection();
+        ddl_transportista.Enabled = false;
+        //     dropsite.ClearSelection();
+      //  ddl_proveedor.ClearSelection();
+       // ddl_proveedor.SelectedValue = ((UsuarioBC)Session["Usuario"]).ID_PROVEEDOR.ToString();
+        //      rb_ingresoCargado.Checked = false;
+        //    chk_ingresoCargado_CheckedChanged(null, null);
+    }
+
+    protected void trailercreado(object sender, EventArgs e)
+    {
+        this.txt_buscarPatente.Text = ((TrailerBC)(sender)).PLACA;
+        this.btnBuscarTrailer_Click(null, null);
+    }
+    #endregion
+
+
+    // viewstate
+    protected override void SavePageStateToPersistenceMedium(object state)
+    {
+        string file = this.GenerateFileName();
+
+        FileStream filestream = new FileStream(file, FileMode.Create);
+
+        LosFormatter formator = new LosFormatter();
+
+        formator.Serialize(filestream, state);
+
+        filestream.Flush();
+
+        filestream.Close();
+
+        filestream = null;
+    }
+
+    protected override object LoadPageStateFromPersistenceMedium()
+    {
+        object state = null;
+        try
+        {
+            StreamReader reader = new StreamReader(this.GenerateFileName());
+
+            LosFormatter formator = new LosFormatter();
+
+            state = formator.Deserialize(reader);
+
+            reader.Close();
+        }
+        catch (Exception)
+        {
+            this.Response.Redirect(string.Format("{0}.aspx", Path.GetFileNameWithoutExtension(this.Page.AppRelativeVirtualPath)));
+        }
+        return state;
+    }
+
+    private string GenerateFileName()
+    {
+        string pageName = Path.GetFileNameWithoutExtension(this.Page.AppRelativeVirtualPath);
+
+        string file = string.Format("{0}{1}.txt", pageName, this.Session.SessionID.ToString());
+
+        //       file = Path.Combine(Server.MapPath("~/ViewStateFiles") + "/" + file);  
+        file = string.Format("{0}\\{1}", utils.pathviewstate(), file);
+
+        return file;
+    }
+}

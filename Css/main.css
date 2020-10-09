@@ -1,0 +1,484 @@
+﻿body
+{
+    font-family: 'font-qmgps' !important;
+    margin-top: 0px;
+    background-repeat: no-repeat;
+    font-size: 10px;
+}
+
+.headerGrilla
+{
+	 background-color:Black;
+    position:static; 
+  
+}
+
+fieldset {
+  padding: 1em;
+  font-family: 'font-qmgps' !important;
+  font:100%/1 'font-qmgps' !important;
+  color: Navy;
+  font-weight: bold;
+  border:2px solid #1F497D;
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;	
+  border-radius:8px;
+  }
+
+.WaterTextBox
+{
+    
+    background-repeat: repeat-x;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    border: 1px solid #868689;
+    font-size: 10px;
+    font-style: italic;
+    color: Silver;
+    width: 230px;
+    height: 18px;
+}
+
+.radlist
+{
+    color: black;
+    background-color:Green;
+    font-family: 'font-qmgps' !important;
+    font-weight:bold;
+}
+
+
+.textBox
+{
+    
+    background-repeat: repeat-x;
+    border: 1px solid #868689;
+    width: 230px;
+    color: black;
+    background-color: #DEE6FA;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    font-family: 'font-qmgps' !important;
+    font-weight:bold;
+    height: 17px;
+    margin-top: 5px;
+}
+
+.textBox_filtro
+{
+    background-repeat: repeat-x;
+    border: 1px solid #868689;
+    width: 200px;
+    color: black;
+    background-color: #DEE6FA;
+    font-family: 'font-qmgps' !important;
+    height: 16px;
+}
+
+
+.textArea
+{
+    
+    background-repeat: repeat-x;
+    border: 1px solid #868689;
+    width: 230px;
+    color: black;
+    background-color: #DEE6FA;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    font-family: 'font-qmgps' !important;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.panelGeneral
+{
+    border: 2px solid #868689;
+}
+
+.banner
+{
+    float: left;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 1px;
+    clear: both;
+}
+
+.tituloNav
+{
+    float: left;
+    margin-top: 20px;
+    font-size: 20px;
+    color: Navy;
+    font-weight: bold;
+    clear: left;
+    font-family: 'font-qmgps' !important;
+}
+
+.tituloNavCentro
+{
+    margin-top: 20px;
+    font-size: 20px;
+    color: Navy;
+    font-weight: bold;
+    font-family: 'font-qmgps' !important;
+}
+
+
+.tds
+{
+    float: right;
+    
+}
+
+.panel
+{
+    margin-top: 5px;
+    text-align: left;
+}
+
+.contentPanel
+{
+    position: absolute;
+    margin-top: 125px;
+    width: 100%;
+    height: 100%;
+    top: 121px;
+    left: 451px;
+}
+
+.tituloCh
+{
+    font-size: 12px;
+    font-family: 'font-qmgps' !important;
+    font-weight: bold;
+    color: Navy;
+}
+.content
+{
+    float: left;
+    min-height: 410px;
+    width: 100%;
+    background-image: url(../img/login-main-fondo2.jpg);
+    background-repeat: no-repeat;
+}
+
+.footer
+{
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 100%;
+    clear: both;
+    background-color: #CCC;
+}
+
+.botonNormal
+{
+    color: #00457D;
+    background-color: #868689;
+    font-weight: bold;
+    text-align: center;
+	margin-bottom: 0px;
+}
+
+.label
+{
+    font-family: 'font-qmgps' !important;
+    font-weight: bold;
+    color: Navy;
+}
+
+
+ul#menu-horizontal li
+{
+    float: left;
+    display: inline;
+    position: relative;
+}
+
+
+ul#menu-horizontal ul
+{
+    display: none;
+    position: relative;
+    top: 24;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+}
+
+ul#menu-horizontal ul li
+{
+    display: block !important;
+    z-index: 3;
+}
+
+ul#menu-horizontal li:hover ul
+{
+    display: none;
+}
+
+ul#menu-horizontal li:hover ul
+{
+    display: block;
+    z-index: 3;
+}
+
+
+
+#menu-horizontal
+{
+    width: 500px;
+    margin: 0 auto;
+}
+
+#menu-horizontal li
+{
+    margin: 0 1px;
+    width: 98px;
+    min-height: 19px;
+    text-align: center;
+    background: #BBB;
+    list-style: none;
+    padding: 2px 0;
+    z-index: 3;
+}
+
+/* y otro poquito por aquí.. */
+
+#menu-horizontal li:hover
+{
+    background: #C5014F;
+}
+
+#menu-horizontal li a
+{
+    font: bold 11px 'font-qmgps' !important;;
+    color: #FFF;
+    text-decoration: none;
+}
+
+#menu-horizontal li ul li
+{
+    float: none;
+    width: 98px;
+    margin: 1px 0;
+}
+#mnu
+{
+    float: left;
+    clear: both;
+}
+.comboBox:disabled .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button
+{
+    background-image: url('../img/windows-arrow_23_23.gif');
+    background-position: top left;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border: 0px none;
+    height: 23px;
+    width: 23px;
+    display: inline-block;
+    visibility: visible;
+}
+
+.comboBox .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button
+{
+    background-image: url('../img/windows-arrow_plomo_23_23.gif');
+    background-position: top left;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border: 0px none;
+    height: 23px;
+    width: 23px;
+    display: inline-block;
+    visibility: visible;
+}
+.comboBox .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input
+{
+    width: 230px;
+    color: #868689;
+    border: solid 1px #868689;
+    padding: 1px 0px 0px 5px;
+    font-size: 14px;
+    font-family: 'font-qmgps' !important;
+    height: 20px;
+    margin-top: 0px;
+    margin-left: 0px;
+    display: inline-block;
+    visibility: visible;
+}
+ul.ajax__combobox_itemlist li
+{
+    font-family: 'font-qmgps' !important;
+    font-size: 13px;
+    color: #868689;
+}
+
+.dropDown
+{
+    background-repeat: repeat-x;
+    border: 1px solid #868689;
+    width: 230px;
+    color: black;
+    background-color: #DEE6FA; 
+    font-weight:bold;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    font-family: 'font-qmgps' !important;
+    height: 25px;
+    margin-top: 5px;
+}
+
+.dropDown_filtro
+{
+    background-repeat: repeat-x;
+    border: 1px solid #868689;
+    width: 230px;
+    color: black;
+    background-color: #DEE6FA; 
+    font-weight:bold;
+    font-family: 'font-qmgps' !important;
+    height: 20px;
+}
+
+.radio
+{
+    color: #868689;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    font-family: 'font-qmgps' !important;
+    margin-top: 7px;
+}
+
+.textMonto
+{
+    text-align: right;
+}
+
+.mnu
+{
+    float: left;
+    display: block;
+    padding: 0 24px 0 12px;
+    height: 36px;
+    
+}
+
+.modalPopup
+{
+    min-width: 250px;
+    min-height: 200px;
+    background: white;
+    border-width: 4px;
+    border-style: outset;
+    border-color: Black;
+    padding: 0px;
+    width: 550px;
+}
+table.time
+{
+    border-width: 4px;
+    border-spacing: 4px;
+    border-style: solid;
+    border-color: gray;
+    border-collapse: separate;
+    background-color: white;
+    width: 100%;
+}
+table.time th
+{
+    border-width: thin;
+    padding: 0px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+}
+table.time td
+{
+    border-width: thin;
+    padding: 0px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+}
+
+
+.invisible
+{
+    visibility: hidden;
+    border-collapse: separate;
+    color: Background;
+}
+
+.invisible2
+{
+    display:none;
+    visibility:hidden
+}
+
+.dgTable
+{
+    border-style: None;
+    border-width: 1px;
+    padding: 6;
+    width: 100%;
+}
+
+.listBoxs
+{
+    color: #868689;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    font-family: 'font-qmgps' !important;
+    font-weight:bold;
+    margin-top: 7px;
+    width: 100px;
+}
+
+.DataGridFixedHeader
+{
+position: relative;
+top:auto
+}
+
+.header
+  {
+    font-weight:bold;
+    position:absolute;      
+    background-color:Gray;    
+        
+  }
+
+input[disabled], input[readonly], select[disabled], select[readonly] checkbox[disabled], checkbox[readonly], textarea[disabled], textarea[readonly]
+{
+    border: 1px solid #999;
+    background-color: #ddd;
+    cursor: default;
+    background-image: none;
+	}
+
+
+.divfondo
+    {
+        background-image: url('../img/Nuevas/fondo_blanco_x_1400.png');
+        background-position: center;
+        width: 100%;
+        height: 585px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+    }
+    

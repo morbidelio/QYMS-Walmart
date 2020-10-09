@@ -1,0 +1,1459 @@
+﻿.nomolesta
+{
+    position: absolute;
+    margin-top: 43px;
+}
+
+.alineado
+{
+    position: absolute;
+    margin-left: 240px;
+}
+
+
+@media (min-width : 801px) and (max-width : 1024px) and (orientation : landscape)
+{
+    body
+    {
+        background-image: url('../img/Nuevas/fondo_x_1024.png');
+        background-position: center;
+        width: 100%;
+        height: 600px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+        font-size: 10px;
+    }
+    
+    /*Inicio Estilos Label */
+    
+    .tituloNav
+    {
+        float: left;
+        margin-top: 20px;
+        font-size: 20px;
+        color: Navy;
+        font-weight: bold;
+        clear: left;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .label
+    {
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+
+    .tituloCh
+    {
+        font-size: 12px;
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+    
+    .lbFooter
+    {
+        margin-top: 5%;
+    }
+    
+    /*Fin Estilos Label */
+
+    /*Inicio Estilos Fieldset */
+    
+    fieldset 
+    {
+      padding: 1em;
+      font-family: 'font-qmgps' !important;
+      font:100%/1 'font-qmgps' !important;;
+      color: Navy;
+      font-weight: bold;
+      border:2px solid #1F497D;
+      -moz-border-radius:8px;
+      -webkit-border-radius:8px;	
+      border-radius:8px;
+    }
+    
+    /*Fin Estilos Fieldset */
+
+    /*Inicio Estilos Textbox */
+    .textBox
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:White;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxDatos
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:yellow;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxNGD
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 150px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxDireccion
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 270px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+
+    .textBox_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 150px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+    
+    .textBox_filtro_viaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 70px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+
+    .textArea
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+          margin-top: 5px;
+          height:17px;
+    }
+     
+    .textAreaUsuario
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 370px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+    }
+    
+    .textAreaViaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 560px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+    }
+    
+    .textAreaViajeBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 560px;
+        color: black;
+        background-color:White;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        
+    }
+    
+    /*Fin Estilos TextBox*/
+    
+    /*Inicio Estilos DropDown */
+    .dropDown
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 190px;
+        color: black;
+        background-color: #DEE6FA;
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    
+     .dropDown1
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 202px;
+        color: black;
+        background-color: #DEE6FA;
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDownBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 190px;
+        color: black;
+        background-color:White; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDownGD
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDown_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 150px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    
+    .dropDown_filtro_viaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 140px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    /*Fin Estilos DropDown */
+
+    /*Inicio Estilos Radio */
+    .radio
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        margin-top: 7px;
+    }
+    /*Fin Estilos Radio */
+
+    /*Inicio Estilos Invisible */
+    .invisible
+    {
+        visibility: hidden;
+        border-collapse: separate;
+        color: Background;
+    }
+
+    .invisible2
+    {
+        display:none;
+        visibility:hidden
+    }
+    /*Fin Estilos Invisible */
+
+    /*Inicio Estilos ListBoxs */
+    .listBoxs
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top: 7px;
+        width: 100px;
+    }
+    /*Fin Estilos ListBoxs */
+
+
+    /*Inicio Estilos Div */
+    .divfondo
+    {
+        background-image: url('../img/Nuevas/fondo_blanco_x_1400.png');
+        background-position: center;
+        width: 100%;
+        height: 588px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .divHeader
+    {
+        width: 100%;
+        min-height: 40px;
+        background-color: #00489C;
+    }
+
+    .divBody
+    {
+        width: 99%;
+        min-height: 570px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .divFooter
+    {
+        width: 100%;
+        min-height: 35px;
+        text-align:center;
+        color: White;
+        background-image: url('../img/Nuevas/footer_1024_768.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .divLogoQ
+    {
+        margin-left: 92%;
+        min-height: 40px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1279px) and (orientation:landscape)
+{
+    
+         .dropDown1
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 202px;
+        color: black;
+        background-color: #DEE6FA;
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    body
+    {
+        background-image: url('../img/Nuevas/fondo_x_1366.png');
+        background-position: center;
+        width: 100%;
+        height: 600px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+        font-size: 10px;
+    }
+    
+    grilla
+    {
+        font-family: 'font-qmgps' !important;
+    }
+    
+    /*Inicio Estilos Label */
+    
+    .tituloNav
+    {
+        float: left;
+        margin-top: 20px;
+        font-size: 20px;
+        color: Navy;
+        font-weight: bold;
+        clear: left;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .label
+    {
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+
+    .tituloCh
+    {
+        font-size: 12px;
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+    
+    .lbFooter
+    {
+        margin-top: 5%;
+    }
+    
+    /*Fin Estilos Label */
+
+    /*Inicio Estilos Fieldset */
+    
+    fieldset 
+    {
+      padding: 1em;
+      font-family: 'font-qmgps' !important;
+      font:100%/1 'font-qmgps' !important;;
+      color: Navy;
+      font-weight: bold;
+      border:2px solid #1F497D;
+      -moz-border-radius:8px;
+      -webkit-border-radius:8px;	
+      border-radius:8px;
+    }
+    
+    /*Fin Estilos Fieldset */
+
+    /*Inicio Estilos Textbox */
+    .textBox
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color:Black;
+        background-color:White;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxDatos
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color:black;
+        background-color:yellow;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+
+    .textBox_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 200px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+
+    .textArea
+    {
+    
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top: 5px;
+        height:17px;
+    }
+    
+    /*Fin Estilos TextBox*/
+    
+    /*Inicio Estilos DropDown */
+    .dropDown
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDownBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:White; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDown_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    /*Fin Estilos DropDown */
+
+    /*Inicio Estilos Radio */
+    .radio
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        margin-top: 7px;
+    }
+    /*Fin Estilos Radio */
+
+    /*Inicio Estilos Invisible */
+    .invisible
+    {
+        visibility: hidden;
+        border-collapse: separate;
+        color: Background;
+    }
+
+    .invisible2
+    {
+        display:none;
+        visibility:hidden
+    }
+    /*Fin Estilos Invisible */
+
+    /*Inicio Estilos ListBoxs */
+    .listBoxs
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top: 7px;
+        width: 100px;
+    }
+    /*Fin Estilos ListBoxs */
+
+
+    /*Inicio Estilos Div */
+    .divfondo
+    {
+        background-image: url('../img/Nuevas/fondo_blanco_x_1400.png');
+        background-position: center;
+        width: 100%;
+        height: 585px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .divHeader
+    {
+        width: 100%;
+        min-height: 40px;
+        background-color: #00489C;
+    }
+
+    .divBody
+    {
+        width: 99%;
+        min-height: 575px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .divFooter
+    {
+        width: 100%;
+        min-height: 40px;
+        text-align:center;
+        color: White;
+        background-image: url('../img/Nuevas/footer_1024.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .divLogoQ
+    {
+        margin-left: 92%;
+        min-height: 40px;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1368px) and (max-height:1024px) and (orientation:landscape)
+{
+         .dropDown1
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 202px;
+        color: black;
+        background-color: #DEE6FA;
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    body
+    {
+        background-image: url('../img/Nuevas/fondo_x_1366.png');
+        background-position: center;
+        width: 100%;
+        height: 600px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+        font-size: 10px;
+    }
+    
+    grilla
+    {
+        font-family: 'font-qmgps' !important;
+    }
+    
+    /*Inicio Estilos Label */
+    
+    .tituloNav
+    {
+        float: left;
+        margin-top: 20px;
+        font-size: 20px;
+        color: Navy;
+        font-weight: bold;
+        clear: left;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .label
+    {
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+
+    .tituloCh
+    {
+        font-size: 12px;
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+    
+    .lbFooter
+    {
+        margin-top: 5%;
+    }
+    
+    /*Fin Estilos Label */
+
+    /*Inicio Estilos Fieldset */
+    
+    fieldset 
+    {
+      padding: 1em;
+      font-family: 'font-qmgps' !important;
+      font:100%/1 'font-qmgps' !important;;
+      color: Navy;
+      font-weight: bold;
+      border:2px solid #1F497D;
+      -moz-border-radius:8px;
+      -webkit-border-radius:8px;	
+      border-radius:8px;
+    }
+    
+    /*Fin Estilos Fieldset */
+
+    /*Inicio Estilos Textbox */
+    .textBox
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color:Black;
+        background-color:White;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxDatos
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color:black;
+        background-color:yellow;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+
+    .textBox_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 200px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+    
+     .textBox_filtro_viaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 80px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+
+    .textArea
+    {
+    
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top:5px;
+    }
+    
+    /*Fin Estilos TextBox*/
+    
+    /*Inicio Estilos DropDown */
+    .dropDown
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDownBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:White; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDown_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    
+    .dropDown_filtro_viaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 120px !important;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    
+    .dropDownGD
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 350px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    /*Fin Estilos DropDown */
+
+    /*Inicio Estilos Radio */
+    .radio
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        margin-top: 7px;
+    }
+    /*Fin Estilos Radio */
+
+    /*Inicio Estilos Invisible */
+    .invisible
+    {
+        visibility: hidden;
+        border-collapse: separate;
+        color: Background;
+    }
+
+    .invisible2
+    {
+        display:none;
+        visibility:hidden
+    }
+    /*Fin Estilos Invisible */
+
+    /*Inicio Estilos ListBoxs */
+    .listBoxs
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top: 7px;
+        width: 100px;
+    }
+    /*Fin Estilos ListBoxs */
+
+
+    /*Inicio Estilos Div */
+    .divfondo
+    {
+        background-image: url('../img/Nuevas/fondo_blanco_x_1400.png');
+        background-position: center;
+        width: 100%;
+        height: 830px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .divHeader
+    {
+        width: 100%;
+        min-height: 40px;
+        background-color: #00489C;
+    }
+
+    .divBody
+    {
+        width: 99%;
+        min-height: 575px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .divFooter
+    {
+        width: 100%;
+        min-height: 40px;
+        text-align:center;
+        color: White;
+        background-image: url('../img/Nuevas/footer_1024.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .divLogoQ
+    {
+        margin-left: 92%;
+        min-height: 40px;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1600px) and (orientation:landscape)
+{
+    body
+    {
+        background-image: url('../img/Nuevas/fondo_x_1366.png');
+        background-position: center;
+        width: 100%;
+        height: 600px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+        font-size: 10px;
+    }
+    
+    /*Inicio Estilos Div */
+    
+    .divBody
+    {
+        width: 99%;
+        min-height: 575px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .divfondo
+    {
+        background-image: url('../img/Nuevas/fondo_blanco_x_1400.png');
+        background-position: center;
+        width: 100%;
+        height: 588px;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .divFooter
+    {
+        width: 100%;
+        min-height: 35px;
+        text-align:center;
+        color: White;
+        background-image: url('../img/Nuevas/footer.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .divHeader
+    {
+        width: 100%;
+        min-height: 40px;
+        background-color: #00489C;
+    }
+    
+    .divLogoQ
+    {
+        margin-left: 94%;
+        min-height: 40px;
+    }
+    
+    /*Fin Estilos Div */ 
+    
+    /*Inicio Estilos DropDown */
+    .dropDown
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDownBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:White; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    
+    .dropDown_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    
+    .dropDown_filtro_viaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 150px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        font-family: 'font-qmgps' !important;
+        height: 20px;
+    }
+    
+    .dropDownGD
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 350px;
+        color: black;
+        background-color: #DEE6FA; 
+        font-weight:bold;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        height: 25px;
+        margin-top: 5px;
+    }
+    /*Fin Estilos DropDown */
+  
+    /*Inicio Estilos Label */
+    
+    .tituloNav
+    {
+        float: left;
+        margin-top: 20px;
+        font-size: 20px;
+        color: Navy;
+        font-weight: bold;
+        clear: left;
+        font-family: 'font-qmgps' !important;
+    }
+
+    .label
+    {
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+
+    .tituloCh
+    {
+        font-size: 12px;
+        font-family: 'font-qmgps' !important;
+        font-weight: bold;
+        color: Navy;
+    }
+    
+    .lbFooter
+    {
+        margin-top: 1%;
+    }
+    
+    /*Fin Estilos Label */
+
+    /*Inicio Estilos Fieldset */
+    
+    fieldset 
+    {
+      padding: 1em;
+      font-family: 'font-qmgps' !important;
+      font:100%/1 'font-qmgps' !important;;
+      color: Navy;
+      font-weight: bold;
+      border:2px solid #1F497D;
+      -moz-border-radius:8px;
+      -webkit-border-radius:8px;	
+      border-radius:8px;
+    }
+    
+    /*Fin Estilos Fieldset */
+
+    /*Inicio Estilos Textbox */
+    .textBox
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:White;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxDatos
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color:yellow;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxNGD
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+    
+    .textBoxDireccion
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 345px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        height: 17px;
+        margin-top: 5px;
+    }
+
+    .textBox_filtro
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 200px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+    
+    .textBox_filtro_viaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 80px;
+        color: black;
+        background-color: #DEE6FA;
+        font-family: 'font-qmgps' !important;
+        height: 16px;
+    }
+
+    .textArea
+    {
+    
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 230px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top: 5px;
+        height:17px;
+    }
+    
+    .textAreaViaje
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 670px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+    }
+    
+    .textAreaViajeBloq
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 670px;
+        color: black;
+        background-color:White;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+    }
+    
+    .textAreaUsuario
+    {
+        background-repeat: repeat-x;
+        border: 1px solid #868689;
+        width: 520px;
+        color: black;
+        background-color: #DEE6FA;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+    }
+    /*Fin Estilos TextBox*/
+    
+    
+
+    /*Inicio Estilos Radio */
+    .radio
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        margin-top: 7px;
+    }
+    /*Fin Estilos Radio */
+
+    /*Inicio Estilos Invisible */
+    .invisible
+    {
+        visibility: hidden;
+        border-collapse: separate;
+        color: Background;
+    }
+
+    .invisible2
+    {
+        display:none;
+        visibility:hidden
+    }
+    /*Fin Estilos Invisible */
+
+    /*Inicio Estilos ListBoxs */
+    .listBoxs
+    {
+        color: #868689;
+        padding: 3px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        font-family: 'font-qmgps' !important;
+        font-weight:bold;
+        margin-top: 7px;
+        width: 100px;
+    }
+    /*Fin Estilos ListBoxs */
+    
+}

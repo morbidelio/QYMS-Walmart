@@ -1,0 +1,70 @@
+﻿.center{
+	perspective: 500;
+	-webkit-perspective: 100;
+	-webkit-perspective-origin: 50% 100%; 
+	margin-top:250px;
+	margin-bottom:100px;
+}
+.footer{
+	width:300px;
+	padding:5px;
+	background: -webkit-linear-gradient(0deg,#000,#000,#fff,#222,#fff,#000,#000);
+	background: -moz-linear-gradient(0deg,#000,#000,#fff,#222,#fff,#000,#000);
+	background: -ms-linear-gradient(0deg,#000,#000,#fff,#222,#fff,#000,#000);
+	background: -o-linear-gradient(0deg,#000,#000,#fff,#222,#fff,#000,#000);
+	border-radius:5px;
+	box-shadow:5px -5px 5px #000;
+	text-shadow:-1px -1px 1px #000;
+	border:1px solid #fff;
+	-webkit-animation:my_anim_ 5s infinite; 
+	-moz-animation:my_anim_ 5s infinite; 
+	-ms-animation:my_anim_ 5s infinite; 
+	-o-animation:my_anim_ 5s infinite; 
+}
+@-webkit-keyframes my_anim_
+{
+	0% {-webkit-transform:  rotateX(-25deg) rotatey(45deg); }
+	50% {-webkit-transform:  rotateX(-25deg) rotatey(-45deg);box-shadow:5px 5px 5px #000; }
+	100% {-webkit-transform:  rotateX(-25deg) rotatey(45deg); }
+}
+@-moz-keyframes my_anim_
+{
+	0% {-moz-transform:  rotateX(-25deg) rotatey(15deg);}
+	50% {-moz-transform:  rotateX(-25deg) rotatey(-15deg);box-shadow:5px 5px 5px #000; }
+	100% {-moz-transform:  rotateX(-25deg) rotatey(15deg); }
+}
+@-ms-keyframes my_anim_
+{
+	0% {-ms-transform:  rotateX(-25deg) rotatey(15deg);}
+	50% {-ms-transform:  rotateX(-25deg) rotatey(-15deg);box-shadow:5px 5px 5px #000; }
+	100% {-ms-transform:  rotateX(-25deg) rotatey(15deg); }
+}
+@-o-keyframes my_anim_
+{
+	0% {-o-transform:  rotateX(-25deg) rotatey(15deg);}
+	50% {-o-transform:  rotateX(-25deg) rotatey(-15deg);box-shadow:5px 5px 5px #000; }
+	100% {-o-transform:  rotateX(-25deg) rotatey(15deg); }
+}
+.footer:hover{
+	-webkit-animation:my_anim_hover 1s infinite; 
+	-moz-animation:my_anim_hover 1s infinite; 
+	-ms-animation:my_anim_hover 1s infinite; 
+	-o-animation:my_anim_hover 1s infinite; 
+}
+@-webkit-keyframes my_anim_hover
+{
+	0% {margin-left:20px}10% {margin-left:-20px}20% {margin-left:20px}30% {margin-left:-20px}100% {margin-left:-20px}
+}
+@-moz-keyframes my_anim_hover
+{
+	0% {margin-left:20px}10% {margin-left:-20px}20% {margin-left:20px}30% {margin-left:-20px}100% {margin-left:-20px}
+}
+@-ms-keyframes my_anim_hover
+{
+	0% {margin-left:20px}10% {margin-left:-20px}20% {margin-left:20px}30% {margin-left:-20px}100% {margin-left:-20px}
+}
+@-o-keyframes my_anim_hover
+{
+	0% {margin-left:20px}10% {margin-left:-20px}20% {margin-left:20px}30% {margin-left:-20px}100% {margin-left:-20px}
+}
+.footer a{text-decoration:none;color:#fff;font-weight:bold;}

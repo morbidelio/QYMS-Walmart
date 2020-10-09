@@ -1,0 +1,475 @@
+﻿@media (min-width: 800px) and (max-width: 1279px) and (orientation:landscape)
+{
+    body
+    {
+        width: 99%;
+        height: 100%;
+        background-image : url('../img/Nuevas/Portada_1024_768.jpg');
+        font-family: 'font-qmgps' !important;
+    }
+    
+    .abc
+    {
+        position: absolute;
+        top: 260px;
+        left: 350px;
+    }
+    
+    .tableLoginCliente
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 280px;
+        height: 270px;
+        color: White;
+        position: absolute;
+        margin-left: 30px;
+        margin-top: 40px;
+    }
+    
+    .txtLoginCliente
+    {
+        width: 75%;
+        border-radius: 5px;
+        height: 25px;
+        margin-left: 12.5%;
+        color:Maroon;
+    }
+    
+    .logoQ
+    {
+        position: absolute;
+        margin-top: -240px;
+        margin-left: 70px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width : 1024px) and (min-width: 801px) and (orientation : landscape)
+{
+    .abc
+    {
+        position: absolute;
+        top: 250px;
+        left: 295px;
+    }
+    
+    body
+    {
+        width: 99%;
+        height: 100%;
+        background-image : url('../img/Nuevas/Portada_1024_768.jpg');
+        font-family: 'font-qmgps' !important;
+    }
+    
+   .casa
+    {
+        position: absolute;
+        margin-left: -42px;
+    }
+
+    .trans
+    {
+        position: absolute;
+        margin-left: -42px;
+        margin-top: 90px;
+    }
+
+    .divLogin
+    {
+        position: absolute;
+        margin-left: 489px;
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        margin-top: 200px;
+        width: 340px;
+        height: 250px;
+    }
+
+    .effect
+    {
+        position: absolute;
+        margin-top: -170px;
+    }
+
+    .error
+    {
+        position: absolute;
+        margin-left: 485px;
+        margin-top: 610px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        color: #00489c;
+        width: 350px;
+        height: 25px;
+        padding-top: 13px;
+        text-align: center;
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+    }
+
+    .lblCliente
+    {
+        margin-left: 12.5%;
+    }
+
+    .logoQ
+    {
+        position: absolute;
+        margin-top: -240px;
+        margin-left: 120px;
+        margin-bottom: 40px;
+    }
+    
+    .tableLogin
+    {
+        text-align: left;
+        color: White;
+        margin-left: 35px;
+    }
+
+    .tableLoginCliente
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 300px;
+        height: 320px;
+        color: White;
+        position: absolute;
+        margin-left: 65px;
+        margin-top: 150px;
+    }
+    
+    .td
+    {
+        height: 70px;
+    }
+
+    .txtLogin
+    {
+        width: 98%;
+        border-radius: 5px;
+        height: 25px;
+        color: #00489c;
+    }
+
+    .txtLoginCliente
+    {
+        width: 75%;
+        border-radius: 5px;
+        height: 25px;
+        margin-left: 12.5%;
+        color: #00489c;
+    }
+}
+
+@media (max-width : 1280px) and (min-width : 1025px) and (orientation : landscape)
+{
+    .abc
+    {
+        position: absolute;
+        top: 250px;
+        left: 295px;
+    }
+    
+    body
+    {
+        width: 99%;
+        height: 100%;
+        background-image : url('../img/Nuevas/Portada_1280_768.jpg');
+        font-family: 'font-qmgps' !important;
+    }
+    
+   .casa
+    {
+        position: absolute;
+        margin-left: -42px;
+    }
+
+    .trans
+    {
+        position: absolute;
+        margin-left: -42px;
+        margin-top: 90px;
+    }
+
+    .divLogin
+    {
+        position: absolute;
+        margin-left: 489px;
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        margin-top: 200px;
+        width: 340px;
+        height: 250px;
+    }
+
+    .effect
+    {
+        position: absolute;
+        margin-top: -170px;
+    }
+
+    .error
+    {
+        position: absolute;
+        margin-left: 485px;
+        margin-top: 610px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        color: #00489c;
+        width: 350px;
+        height: 25px;
+        padding-top: 13px;
+        text-align: center;
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+    }
+
+    .lblCliente
+    {
+        margin-left: 12.5%;
+    }
+
+    .logoQ
+    {
+        position: absolute;
+        margin-top: -240px;
+        margin-left: 230px;
+        margin-bottom: 40px;
+    }
+    
+    .logoQ_trans
+    {
+        position: absolute;
+        margin-top: -240px;
+        margin-left: 40px;
+        margin-bottom: 40px;
+    }
+
+    .tableLogin
+    {
+        text-align: left;
+        color: White;
+        margin-left: 35px;
+    }
+
+    .tableLoginCliente
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 340px;
+        height: 350px;
+        color: White;
+        position: absolute;
+        margin-left: 160px;
+        margin-top: 150px;
+    }
+    
+    .tableLoginTrans
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 340px;
+        height: 300px;
+        color: White;
+        position: absolute;
+        margin-left: 18px;
+        margin-top: 150px;
+    }
+
+    .td
+    {
+        height: 70px;
+    }
+
+    .txtLogin
+    {
+        width: 98%;
+        border-radius: 5px;
+        height: 25px;
+        color: #00489c;
+    }
+
+    .txtLoginCliente
+    {
+        width: 75%;
+        border-radius: 5px;
+        height: 25px;
+        margin-left: 12.5%;
+        color: #00489c;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1599px) and (orientation:landscape)
+{
+    .abc
+    {
+        position: absolute;
+        top: 260px;
+        left: 480px;
+    }
+
+    .alertify-log-custom
+    {
+        background: blue;
+    }
+
+    body
+    {
+        width: 99%;
+        height: 100%;
+        background-image : url('../img/Nuevas/Portada_Q-fondo.jpg');
+        font-family: 'font-qmgps' !important;
+    }
+
+    .casa
+    {
+        position: absolute;
+        margin-left: -42px;
+    }
+
+    .trans
+    {
+        position: absolute;
+        margin-left: -42px;
+        margin-top: 90px;
+    }
+
+    .divLogin
+    {
+        position: absolute;
+        margin-left: 489px;
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        margin-top: 200px;
+        width: 340px;
+        height: 250px;
+    }
+
+    .effect
+    {
+        position: absolute;
+        margin-top: -170px;
+    }
+
+    .error
+    {
+        position: absolute;
+        margin-left: 485px;
+        margin-top: 610px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        color: #00489c;
+        width: 350px;
+        height: 25px;
+        padding-top: 13px;
+        text-align: center;
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+    }
+
+    .lblCliente
+    {
+        margin-left: 12.5%;
+    }
+
+    .logoQ
+    {
+        position: absolute;
+        margin-top: -240px;
+        margin-left: 90px;
+        margin-bottom: 40px;
+    }
+    
+    .logoQ_trans
+    {
+        position: absolute;
+        margin-top: -240px;
+        margin-left: 40px;
+        margin-bottom: 40px;
+    }
+
+    .tableLogin
+    {
+        text-align: left;
+        color: White;
+        margin-left: 35px;
+    }
+
+    .tableLoginCliente
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 340px;
+        height: 350px;
+        color: White;
+        position: absolute;
+        margin-left: 18px;
+        margin-top: 150px;
+    }
+    
+    .tableLoginTrans
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 340px;
+        height: 300px;
+        color: White;
+        position: absolute;
+        margin-left: 18px;
+        margin-top: 150px;
+    }
+
+    .td
+    {
+        height: 70px;
+    }
+
+    .txtLogin
+    {
+        width: 98%;
+        border-radius: 5px;
+        height: 25px;
+        color: #00489c;
+    }
+
+    .txtLoginCliente
+    {
+        width: 75%;
+        border-radius: 5px;
+        height: 25px;
+        margin-left: 12.5%;
+        color: #00489c;
+    }
+}

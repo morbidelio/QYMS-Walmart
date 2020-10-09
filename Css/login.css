@@ -1,0 +1,143 @@
+﻿body 
+{
+	font-family: 'font-qmgps' !important;
+	margin-top:20px;
+	text-align :center;
+	font-size:10px;
+}
+
+.banner
+{
+	 float:left;
+	 height:100px;
+	 width:100%;
+	 margin-bottom:1px;
+	 clear:both;
+}
+
+.textBox 
+{
+	
+	background-repeat:repeat-x;
+	border:1px solid #868689;
+	width: 230px;
+	color:#868689;
+	padding:3px;
+	margin-right:4px;
+	margin-bottom:8px;
+	font-family: 'font-qmgps' !important;
+}
+
+.lineaFondo
+{
+	float:left;
+	clear:both;
+	width:100%;
+	height:10px;
+	background-image:url(../img/lineaFondo.jpg);
+}
+.titulo
+{
+	 float:left;
+	 margin-top:20px;
+	 margin-left:40px;
+	 font-size:25px;
+	 width:671px;
+	 height:65px;
+     color:Gray;     
+     background-image : url('../img/Titutlo_qmtms.png');
+     background-repeat:no-repeat;
+	}
+	
+.tituloNav
+{ 
+	 font-family: 'font-qmgps' !important;
+	 float:left;
+	 margin-top:30px;
+	 margin-left:40px;
+	 font-size:15px;
+     color:Navy;
+     font-weight:bold;
+     clear:left;
+  	}
+.logo
+{
+	float:right;
+    background-image : url(../img/QmTMS_Logo.png);
+	height:110px;
+	width:250px;
+	background-repeat:no-repeat;
+	
+	}
+.panel
+{
+	margin-top:5px;
+	text-align: left;
+}
+	
+.contentPanel
+{
+	position:absolute;
+	margin-top:125px;
+	width:100%;
+	height:100%;
+	top: 121px;
+	left: 451px;
+}
+	
+.tituloCh
+{
+	font-size:12px;
+	font-style:italic;
+	font-weight:bold;
+	color:#00457D;
+}
+
+.content
+{
+	 float:left;
+	 height:30px;
+	 width:100%;
+	 clear:both;
+}
+	
+.footer
+{
+     position :relative;
+	 float:left;
+	 height:30px; 
+	 width:100%;
+	 clear:both;
+	 background-color:#CCC;
+}
+
+.botonNormal{
+
+	color:#00457D;
+    background-color :#868689 ;
+    
+	}
+	
+	.tableLoginCliente
+    {
+        -webkit-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        -moz-box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        box-shadow: 11px 11px 18px 0px rgba(50, 50, 50, 0.62);
+        border-radius: 8px;
+        background-color: rgba(0,72,156, 0.5);
+        width: 223px;
+        height: 190px;
+        color: White;
+        position: absolute;
+        margin-left: 25px;
+        margin-top: 175px;
+    }
+    
+    .txtLoginCliente
+    {
+        width: 75%;
+        border-radius: 5px;
+        height: 15px;
+        margin-left: 12.5%;
+        color: #00489c;
+    }

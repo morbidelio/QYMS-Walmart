@@ -1,0 +1,378 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterTms.master.cs" Inherits="Master_MasterTms" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>::: QYMS :::
+    </title>
+    <link rel="SHORTCUT ICON" href="../img/Nuevas/q.ico" />
+    <link href="../css2/Bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../css2/Font.css" rel="stylesheet" type="text/css" />
+    <link href="../css2/Estilo-Nuevo.css" rel="stylesheet" type="text/css" />
+    <link href="../css2/Progresbar.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../css2/jquery.datetimepicker.css" />
+    <link href="../Css/Grilla.css" rel="stylesheet" type="text/css" />
+    <script src="../js2/jquery-3.2.1.js" type="text/javascript"></script>
+    <script src="../js2/Jquery.ui.1.12.1.js" type="text/javascript"></script>
+    <script src="../js2/popper.min.js" type="text/javascript"></script>
+    <script src="../js2/Bootstrap.js" type="text/javascript"></script>
+    <script src="../src/js/jscal2.js" type="text/javascript"></script>
+    <script src="../js2/bootstrap-notify.min.js" type="text/javascript"></script>
+    <script src="../js2/build/jquery.datetimepicker.full.min.js"></script>
+    <script src="../Js/FunctionUtils.js" type="text/javascript"></script>
+    <script src="../dist/jquery.contextMenu.js" type="text/javascript"></script>
+    <link href="../dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../js/yms.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../js2/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <!--#include file ="menu.html"-->
+    <form id="form1" runat="server">
+        <asp:ToolkitScriptManager ID="toolkitScriptMaster" runat="server">
+        </asp:ToolkitScriptManager>
+        <script type="text/javascript">
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+            $.fn.dataTable.ext.errMode = 'none';
+
+            $.datetimepicker.setLocale('es'); /*cambia el lenguaje predeterminado del calendario a español*/
+            function EndRequestHandler1(sender, args) {
+                $('.input-double').on('input', function () {
+                    this.value = this.value.replace(/[^\d\,kK]/g, '');
+                });
+                $('.input-rut').on('input', function () {
+                    this.value = this.value.replace(/[^\d\,kK]/g, '');
+                });
+                $('.input-number').on('input', function () {
+                    this.value = this.value.replace(/[^\d]/g, '');
+                });
+                $('.input-integer').on('input', function () {
+                    this.value = this.value.replace(/[^\d\-]/g, '');
+                });
+                $('.input-letras').on('input', function () {
+                    this.value = this.value.replace(/[^a-zA-Z]/g, '');
+                });
+                $('.input-word').on('input', function () {
+                    this.value = this.value.replace(/[^\w]+/g, '');
+                });
+                $('.input-mayus').on('input', function () {
+                    this.value = this.value.toUpperCase();
+                });
+                $(".input-fecha").datetimepicker({ format: 'd-m-Y', timepicker: false });
+                $(".input-fecha").attr('autocomplete', 'off');
+                $(".input-hora").datetimepicker({ format: 'H:i', datepicker: false });
+                $(".input-hora").attr('autocomplete', 'off');
+            }
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(EndRequestHandler1);
+
+            function modalCambioPass() {
+                $("#modalConfirmaciopass").modal();
+            }
+            function abrirModal(a) {
+                $('#' + a).modal();
+            }
+            function cerrarModal(a) {
+                $('#' + a).modal('hide');
+            }
+            var notify;
+            function showAlertClass(accion, clase) {
+
+                var xmlhttp = new XMLHttpRequest();
+                var mensaje;
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var sPath = window.location.pathname;
+                        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1).toLowerCase();
+                        var jsonResponse = xmlhttp.responseText;
+                        var objeto_json = JSON.parse(jsonResponse);
+                        mensajes = objeto_json.page;
+
+                        for (var i = 0; i < mensajes.length; i++) {
+                            var pagina = mensajes[i].name.toLowerCase();
+                            if (pagina == sPage) {
+                                for (var a = 0; a < mensajes[i].accion.length; a++) {
+                                    var thisAccion = mensajes[i].accion[a].nombre
+                                    if (thisAccion == accion) {
+                                        mensaje = eval("mensajes[i].accion[a]." + clase);
+                                        if (clase.includes('_')) {
+                                            clase = clase.substring(0, clase.indexOf("_"));
+                                        }
+                                        console.log("Clase: "+clase);
+                                        console.log("Accion: " + accion);
+                                        console.log("Mensaje: "+mensaje);
+                                        msj(mensaje, clase, (clase != 'error'));
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                xmlhttp.open("GET", "../mensajes.json");
+                xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
+                xmlhttp.send();
+            }
+            var notify;
+            function msj(mensaje, clase, hide) {
+                if (notify != undefined && notify != null) {
+                    notify = null;
+                }
+                notify = $.notify(mensaje,
+                    {
+                        // settings
+                        className: clase,
+                        delay: 0,
+                        position: 'top center',
+                        autoHide: hide
+                    });
+            }
+
+            function showAlert(mensaje) {
+                $.notify(mensaje, {
+                    // settings
+                    className: 'success',
+                    position: 'top center'
+                });
+            }
+
+            function showAlert2(mensaje) {
+                if (notify != undefined && notify != null) {
+                    notify = null;
+                }
+                notify = $.notify(mensaje,
+                    {
+                        // settings
+                        className: 'warn',
+                        delay: 0,
+                        position: 'top center',
+                        autoHide: false
+
+                    });
+            }
+
+            function showAlert4(mensaje) {
+                if (notify != undefined && notify != null) {
+                    notify = null;
+                }
+                notify = $.notify(mensaje,
+                    {
+                        // settings
+                        className: 'error',
+                        delay: 0,
+                        position: 'top center',
+                        autoHide: true
+
+                    });
+            }
+
+            function showAlert3() {
+
+                $('.notifyjs-wrapper').trigger('notify-hide');
+
+            }
+
+            function progr_est() {
+
+                performCheck();
+
+            }
+
+            function redirige(url) {
+                if ($get('UpdateProgress1') != null)
+                    $get('UpdateProgress1').style.display = 'block';
+                window.location.href = url;
+            }
+
+
+            function performCheck() {
+
+                if (typeof Page_ClientValidate === "function") {
+                    DisableHiddenValidators();
+                    if (!Page_ClientValidate()) {
+
+                        if ($get('UpdateProgress1') != null)
+                            $get('UpdateProgress1').style.display = 'none';
+
+                    }
+                    else {
+
+                        if ($get('UpdateProgress1') != null)
+                            $get('UpdateProgress1').style.display = 'block';
+                    }
+
+                }
+
+                else {
+                    if ($get('UpdateProgress1') != null)
+                        $get('UpdateProgress1').style.display = 'block';
+
+                }
+
+            }
+
+
+            function DisableHiddenValidators() {
+                for (var i = 0; i < Page_Validators.length; i++) {
+                    var visible = $('#' + Page_Validators[i].controltovalidate).is(':visible');
+                    ValidatorEnable(Page_Validators[i], visible);
+                }
+
+            }
+
+            function modalCerrar(modal) {
+                $("#" + modal).modal('hide');
+            }
+
+            Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(showAlert3);
+
+            if (typeof Telerik !== 'undefined') {
+
+                if (typeof Telerik.Web.UI.RadListBox !== 'undefined')
+                    Telerik.Web.UI.RadListBox.prototype.saveClientState = function () {
+                        return "{" +
+                            "\"isEnabled\":" + this._enabled +
+                            ",\"logEntries\":" + this._logEntriesJson +
+                            ",\"selectedIndices\":" + this._selectedIndicesJson +
+                            ",\"checkedIndices\":" + this._checkedIndicesJson +
+                            ",\"scrollPosition\":" + Math.round(this._scrollPosition) +
+                            "}";
+                    }
+
+                if (typeof Telerik.Web.UI.RadTreeView !== 'undefined')
+                    Telerik.Web.UI.RadTreeView.prototype.saveClientState = function () {
+                        return "{\"expandedNodes\":" + this._expandedNodesJson +
+                            ",\"collapsedNodes\":" + this._collapsedNodesJson +
+                            ",\"logEntries\":" + this._logEntriesJson +
+                            ",\"selectedNodes\":" + this._selectedNodesJson +
+                            ",\"checkedNodes\":" + this._checkedNodesJson +
+                            ",\"scrollPosition\":" + Math.round(this._scrollPosition) + "}";
+                    }
+
+
+
+                if (typeof Telerik.Web.UI.RadScheduler !== 'undefined')
+                    Telerik.Web.UI.RadScheduler.prototype.saveClientState = function () {
+                        return '{"scrollTop":' + Math.round(this._scrollTop) + ',"scrollLeft":' + Math.round(this._scrollLeft) + ',"isDirty":' + this._isDirty + '}';
+                    }
+            }
+
+
+        </script>
+        <asp:LinkButton ID="cambio_pass" runat="server" Text="Cambio Pass" Style="color: inherit; visibility: hidden; display: none;" OnClick="btnCambioPass_Click" />
+        <!--////////////////////////////Comienza Titulo////////////////////////////-->
+        <div id="Container" class="container-fluid">
+            <asp:ContentPlaceHolder ID="titulo" runat="server" />
+        </div>
+        <!--////////////////////////////Finaliza Titulo////////////////////////////-->
+        <!--////////////////////////////Comienza Filtro////////////////////////////-->
+        <div class="container-fluid filtro" id="filtros">
+            <asp:ContentPlaceHolder ID="Filtro" runat="server" />
+        </div>
+        <!--////////////////////////////Finaliza Filtro////////////////////////////-->
+        <div class="separador">
+        </div>
+        <!--////////////////////////////Comienza contenedor////////////////////////////-->
+        <div class="container-fluid  cuerpo" id="scrolls">
+            <asp:ContentPlaceHolder ID="Contenedor" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Modals" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <!--////////////////////////////finaliza contenedor////////////////////////////-->
+        <!--////////////////////////////comienza ocultos////////////////////////////-->
+        <asp:ContentPlaceHolder ID="ocultos" runat="server" />
+        <!--////////////////////////////finaliza ocultos ////////////////////////////-->
+        <!--////////////////////////////comienza scripts////////////////////////////-->
+        <asp:ContentPlaceHolder ID="scripts" runat="server">
+        </asp:ContentPlaceHolder>
+        <!--////////////////////////////Finaliza scripts////////////////////////////-->
+        <!--////////////////////////////Comienza progress bar////////////////////////////-->
+
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="" ClientIDMode="Static">
+            <ProgressTemplate>
+                <div class="overlay" style="z-index: 1051">
+                    <center>
+              <img src="img/progress_mmpfq.gif" alt="" class="overlayContent" />
+            </center>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+
+        <!--////////////////////////////Finaliza progress bar////////////////////////////-->
+        <div class="modal fade" id="modalmensaje" data-backdrop="static" role="dialog">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Confirmacion
+                        </h4>
+                    </div>
+
+                    <div class="modal-body" style="height: auto; overflow-y: auto;">
+                        <div class="col-xs-3">
+                            Exito
+                <br />
+                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Width="90%"></asp:TextBox>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalConfirmaciopass" data-backdrop="static" role="dialog">
+            <div class="modal-dialog" role="dialog">
+                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                    <ContentTemplate>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Cambio Password
+                                </h4>
+                            </div>
+
+                            <div class="modal-body" style="height: auto; overflow-y: auto;">
+                                <div class="col-xs-3">
+                                    Password Actual
+                    <br />
+                                    <asp:TextBox ID="txtPass" runat="server" CssClass="form-control" Width="90%"></asp:TextBox>
+                                </div>
+                                <div class="col-xs-3">
+                                    Nueva Password
+                    <br />
+                                    <asp:TextBox ID="txtNuevaPass" runat="server" CssClass="form-control" Width="90%"></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ValidationGroup="nuevoUsuario"
+                                        ControlToValidate="txtNuevaPass" ErrorMessage="No se permite ñ."
+                                        ValidationExpression="^([^ñÑ]*)+$"></asp:RegularExpressionValidator>
+                                </div>
+                                <div class="col-xs-4">
+                                    Confirmacion Password
+                    <br />
+                                    <asp:TextBox ID="txtConfirmaPass" runat="server" CssClass="form-control" Width="90%"></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="nuevoUsuario"
+                                        ControlToValidate="txtConfirmaPass" ErrorMessage="No se permite ñ."
+                                        ValidationExpression="^([^ñÑ]*)+$"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:LinkButton ID="btnConfirmar" runat="server" ToolTip="Cambio Pass" ValidationGroup="nuevoUsuario" CssClass="btn btn-primary" OnClick="btnConfirmar_Click">
+                    <span class="glyphicon glyphicon-ok"></span>
+                                </asp:LinkButton>
+                                <button type="button" data-dismiss="modal" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>
